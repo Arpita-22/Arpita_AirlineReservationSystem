@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+passengerSignUpForm{
+	width:200px;
+    padding:20px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+input[type=text], input[type=email], input[type=date]{
+	  padding:10px;
+      margin:10px 0;
+      box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+      border-radius:10px;
+      width:25%;
+}
+ 
+
+.border-customized-input {
+   border: 2px solid #eee;
+}
+
+.border-bottom-input {
+  border:0;
+  border-bottom:1px solid #eee;
+}
+
