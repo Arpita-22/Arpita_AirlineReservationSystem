@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -35,12 +36,20 @@ public class UserController {
 	}
 
 	@PostMapping("/createUser")
-	public String createUser(@Valid @ModelAttribute("user") User user, BindingResult errors) {
+	public String createUser(@Valid @ModelAttribute("user") User user, BindingResult errors, Errors error) {
 		System.out.println("Errors? " + errors.hasErrors());
 		if (errors.hasErrors()) {
 			return "signUp";
 		}
-		userService.createUser(user);
+		
+		if(userService.findUserById(user.getuId()) != null) {
+//			error.rejectValue("User Not Found", "Sorry, User already exists");
+
+			error.reject("User Not Found", "Sorry, User already exists");
+			
+		}
+			userService.createUser(user);
+		
 		return "redirect:/";
 	}
 

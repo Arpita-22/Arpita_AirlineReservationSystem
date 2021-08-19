@@ -18,6 +18,11 @@ public class HomeController {
 		return "index";
 	}
 	
+	@GetMapping("/passengerList")
+	public String showPassengerListPage() {
+		return "passengerList";
+	}
+	
 
 	
 	

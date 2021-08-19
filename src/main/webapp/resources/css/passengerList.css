@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+body{
+	background-color: lightyellow;
+}
+	
+table{
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  min-width: 400px;
+  text-align: center;
+    vertical-align: middle;
+  
+}
+
+thead tr{
+	/* background-color:#ffe6e6; */
+	color: darkbrown;
+	/* text-align: left; */
+	font-weight: bold;
+	background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);
+} 
+
+table tbody tr{
+	border-bottom: 1px solid grey;
+	
+}
+
+table th, table td{
+	
+	padding: 12px 15px;
+	
+}
+
+tbody tr{
+	background-color: white;
+}
+
+h1{
+	color: #654321;
+} 

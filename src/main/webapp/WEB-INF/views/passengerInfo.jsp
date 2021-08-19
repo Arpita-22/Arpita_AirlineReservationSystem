@@ -26,7 +26,7 @@
 
 		<div id="passengerDetails">
 		   <fieldset>
-			<legend><h1>Passenger# 0</h1></legend>
+			<legend>Passenger# 0</legend>
 			<form:label path="passengerList[0].firstName" for="firstName0">First Name</form:label>
 			<form:input path="passengerList[0].firstName" id="firstName0"
 				type="text" name="firstName" placeholder="firstName" value="test" />

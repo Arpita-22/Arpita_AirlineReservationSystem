@@ -68,10 +68,10 @@
                 </select>   
 
                 <label for="depart" style="color:blue;">Departing</label>
-                <input type="date"  name="depart"/> 
+                <input type="date"  name="depart" min="2021-08-26" max="2021-08-26"/> 
 
                 <label for="returning" style="color:blue;">Returning</label>
-                <input type="date"  name="returning"/> 
+                <input type="date"  name="returning" min="2021-08-26" max="2021-08-26"/> 
 
                 <input type="submit" name="submit" value="search" onSubmit="${pageContext.request.contextPath}/search"/>
             </form>

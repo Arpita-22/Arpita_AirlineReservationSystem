@@ -2,6 +2,8 @@ package org.arpita.airlinereservationsystem.sevices.impl;
 
 import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.arpita.airlinereservationsystem.models.Flight;
 import org.arpita.airlinereservationsystem.repositories.FlightRepository;
 import org.arpita.airlinereservationsystem.services.FlightService;
@@ -29,7 +31,7 @@ public class FlightServiceImpl implements FlightService {
 		if (optFlight.isPresent()) {
 			return optFlight.get();
 		}
-		return null;
+		throw new EntityNotFoundException();
 	}
 
 	@Override

@@ -35,10 +35,7 @@ private UserService userService;
 //		Passenger foundPassenger = passengerService.findPassengerById(savedPassenger.getpId());
 //		System.out.println(foundPassenger.getpId());
 //		assertEquals(savedPassenger, foundPassenger);
-//		Passenger foundPassenger = passengerService.findPassengerById(1);
-//		System.out.println(foundPassenger.toString());
-//		
-//		Assertions.assertNotNull(foundPassenger);
+
 	}
 	
 	@Test

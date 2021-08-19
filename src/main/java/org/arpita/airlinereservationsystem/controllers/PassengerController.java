@@ -11,8 +11,10 @@ import javax.validation.Valid;
 import org.arpita.airlinereservationsystem.models.Flight;
 import org.arpita.airlinereservationsystem.models.Passenger;
 import org.arpita.airlinereservationsystem.models.PassengerList;
+import org.arpita.airlinereservationsystem.models.Ticket;
 import org.arpita.airlinereservationsystem.services.FlightService;
 import org.arpita.airlinereservationsystem.services.PassengerService;
+import org.arpita.airlinereservationsystem.services.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -30,11 +32,14 @@ public class PassengerController {
 
 	private FlightService flightService;
 	private PassengerService passengerService;
+	private TicketService ticketService;
 
 	@Autowired
-	public PassengerController(FlightService flightService, PassengerService passengerService) {
+	public PassengerController(FlightService flightService, PassengerService passengerService,
+			TicketService ticketService) {
 		this.flightService = flightService;
 		this.passengerService = passengerService;
+		this.ticketService = ticketService;
 	}
 
 	@InitBinder
@@ -76,16 +81,21 @@ public class PassengerController {
 		model.addAttribute("passengers", flightService.findFlightById(flightId).getPassengers());
 		return "passengerList";
 	}
+	
 
-	@GetMapping("/passengers/{passengerId}")
-	public String removePassengerById(@PathVariable("passengerId") int pid, HttpSession session) {
+	@GetMapping("/passenger/remove/{passengerId}")
+	public String removePassengerById(@PathVariable("passengerId") int pid, HttpSession session, Model model) {
 		int flightId = (int) session.getAttribute("flightId");
 		Flight flight = flightService.findFlightById(flightId);
 		Passenger passen = passengerService.findPassengerById(pid);
 		flight.getPassengers().remove(passen);
 		flightService.save(flight);
 		passengerService.removePassengerById(pid);
-		return "redirect:/";
+		
+		model.addAttribute("passengers", flight.getPassengers());
+		
+	    return "passengerList";
+//		return "redirect:/";
 	}
 
 	@GetMapping("/passenger/{passengerId}")
@@ -102,9 +112,10 @@ public class PassengerController {
 				break;
 			}
 		}
-//		model.addAttribute("ticket", new Ticket());
+
 		return "updatePassengerInfo";
 	}
+	
 
 	@PostMapping("/passenger/updatePassenger")
 	public String updatePassenger(@Valid @ModelAttribute("passenger") Passenger passenger, Model model,
@@ -118,8 +129,6 @@ public class PassengerController {
 
 		int flightId = (int) session.getAttribute("flightId");
 		Flight flight = flightService.findFlightById(flightId);
-
-//		Ticket ticket = new Ticket();
 
 		List<Passenger> passengersUpdated = new ArrayList<>();
 		for (Passenger p : flight.getPassengers()) {
@@ -139,9 +148,10 @@ public class PassengerController {
 		flight.setPassengers(passengersUpdated);
 		flightService.save(flight);
 
-		System.out.println(flight);
+		model.addAttribute("passengers", flight.getPassengers());
 
-		return "redirect:/";
+		return "passengerList";
+
 	}
 
 }

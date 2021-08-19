@@ -26,11 +26,6 @@ import org.springframework.test.context.web.WebAppConfiguration;
 		this.flightService = flightService;
 	}
 
-//	@Test
-//	void testFindPassenger() {
-//		Flight foundPassenger = flightService.findAllPassengers(1);
-//		System.out.println(foundPassenger.toString());
-//	}
 
 	@Test
 	void testFindFlightById() {
@@ -51,16 +46,16 @@ import org.springframework.test.context.web.WebAppConfiguration;
 		
 	}
 	
-	@Test
-	void testFindBySourceAndDestinationAndArrivalTimeAndDepartureTime() {
-		Iterable<Flight> flightSelected = flightService.findBySourceAndDestinationAndArrivalTimeAndDepartureTime("Denver", "Boston", "08/26/2021", "08/26/2021");
-		for(Flight flight: flightSelected) {
-			System.out.println(flight);
-			
-		}
-		Assertions.assertNotNull(flightSelected);
-		
-	}
+//	@Test
+//	void testFindBySourceAndDestinationAndArrivalTimeAndDepartureTime() {
+//		Iterable<Flight> flightSelected = flightService.findBySourceAndDestinationAndArrivalTimeAndDepartureTime("Denver", "Boston", "08/26/2021", "08/26/2021");
+//		for(Flight flight: flightSelected) {
+//			System.out.println(flight);
+//			
+//		}
+//		Assertions.assertNotNull(flightSelected);
+//		
+//	}
 	
 	
 	@Test

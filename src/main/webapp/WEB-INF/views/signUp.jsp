@@ -10,7 +10,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css" href="css/style.css">
-<script src="javaScript/index.js" defer="defer"></script>
+<!-- <script src="javaScript/index.js" defer="defer"></script> -->
 <title>Sign Up</title>
 <style>
 @import

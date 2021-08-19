@@ -9,12 +9,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css" href="css/style.css">
-<script src="javaScript/index.js" defer="defer"></script>
--->
+<!-- <script src="javaScript/index.js" defer="defer"></script> -->
 <title>Login</title>
 <style>
 body {
 	background-image: url("images/Destination.jpg");
+}
+
+input[type=password],input[type=email]{
+    width: 100%;
+    padding: 20px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    background-color:rgb(228, 235, 236);
+    font-size: 20px;
+    text-align: center;
+    color: lightgray;
 }
 </style>
 </head>
