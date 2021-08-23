@@ -86,6 +86,10 @@ h1 {
 
 
 		<h1 id="signUp-h1"></h1>
+		<% if (request.getAttribute("error") != null ){
+			out.print("User already exists");
+		}
+			%>
 
 	</div>
 </body>

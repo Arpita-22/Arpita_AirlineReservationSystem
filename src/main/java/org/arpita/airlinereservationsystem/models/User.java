@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
@@ -28,8 +29,9 @@ public class User {
 	@NotEmpty(message="lastName must not be empty")
 	private String lastName;
 	
-	@Column(nullable=false)
+	@Column(nullable=false, unique = true)
 	@NotEmpty(message="email must not be empty")
+	@Email
 	private String email;
 	
 	@Column(nullable=false)

@@ -3,7 +3,7 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
-src/main/java/org/arpita/airlinereservationsystem/rapidapi
+org/arpita/airlinereservationsystem/rapidapi/**
 
 ### STS ###
 .apt_generated

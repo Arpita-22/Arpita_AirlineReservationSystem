@@ -74,7 +74,7 @@ body {
 						<td><%=flight.getArrivalTime()%></td>
 						<td><%=flight.getDepartureTime()%></td>
 						<td><%=flight.getFlightNumber()%></td>
-						<td></td>
+						<td><%=flight.getPrice() %></td>
 						<td><a href="flights/<%=flight.getfId()%>" class="cell-7">Book Flight</a></td>
 					</tr>
 				</form>

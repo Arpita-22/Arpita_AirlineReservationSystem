@@ -23,11 +23,8 @@ public class Ticket {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int tId;
 	
-	@OneToOne(targetEntity = Passenger.class)
-	private Passenger passenger;
-	
-	@OneToOne(targetEntity = Flight.class)
-	private Flight flight;
+	@OneToOne(targetEntity = Booking.class)
+	private Booking booking;
 	
 	private int pnrNumber;
 	private double price;
@@ -38,12 +35,11 @@ public class Ticket {
 	}
 	
 
-	public Ticket(int pnrNumber, double price, Passenger passenger, Flight flight) {
+	public Ticket(int pnrNumber, double price, Booking booking) {
 		this();
 		this.pnrNumber = pnrNumber;
 		this.price = price;
-		this.passenger = passenger;
-		this.flight = flight;
+		this.booking = booking;
 	} 
 	
 	public int gettId() {
@@ -73,40 +69,24 @@ public class Ticket {
 
 
 	/**
-	 * @return the passenger
+	 * @return the booking
 	 */
-	public Passenger getPassenger() {
-		return passenger;
+	public Booking getBooking() {
+		return booking;
 	}
 
 
 	/**
-	 * @param passenger the passenger to set
+	 * @param booking the booking to set
 	 */
-	public void setPassenger(Passenger passenger) {
-		this.passenger = passenger;
-	}
-
-
-	/**
-	 * @return the flight
-	 */
-	public Flight getFlight() {
-		return flight;
-	}
-
-
-	/**
-	 * @param flight the flight to set
-	 */
-	public void setFlight(Flight flight) {
-		this.flight = flight;
+	public void setBooking(Booking booking) {
+		this.booking = booking;
 	}
 
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(flight, passenger, pnrNumber, price, tId);
+		return Objects.hash(booking, pnrNumber, price, tId);
 	}
 
 
@@ -119,20 +99,17 @@ public class Ticket {
 		if (getClass() != obj.getClass())
 			return false;
 		Ticket other = (Ticket) obj;
-		return Objects.equals(flight, other.flight) && Objects.equals(passenger, other.passenger)
-				&& pnrNumber == other.pnrNumber
+		return Objects.equals(booking, other.booking) && pnrNumber == other.pnrNumber
 				&& Double.doubleToLongBits(price) == Double.doubleToLongBits(other.price) && tId == other.tId;
 	}
 
 
 	@Override
 	public String toString() {
-		return "Ticket [tId=" + tId + ", passenger=" + passenger + ", flight=" + flight + ", pnrNumber=" + pnrNumber
-				+ ", price=" + price + "]";
+		return "Ticket [tId=" + tId + ", booking=" + booking + ", pnrNumber=" + pnrNumber + ", price=" + price + "]";
 	}
 
 
-	
-	
+
 
 }

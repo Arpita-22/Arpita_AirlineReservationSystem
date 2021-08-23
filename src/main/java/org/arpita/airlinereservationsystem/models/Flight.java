@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "flights")
 public class Flight {
@@ -22,10 +23,20 @@ public class Flight {
 
 	private String source;
 	private String destination;
-	private String departureTime;
-	private String arrivalTime;
+	
+
+	private String departureDate;
+	
+	private String arrivalDate;
+    
+    private String departureTime;
+    
+    private String arrivalTime;
+    
+    private float price;
+   
 	private int flightNumber;
-//	private float price;
+	
 
 	@OneToMany(targetEntity = Passenger.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Passenger> passengers;
@@ -35,13 +46,17 @@ public class Flight {
 
 	}
 
-	public Flight(String source, String destination, String departureTime, String arrivalTime, int flightNumber) {
+	public Flight(String source, String destination, String departureTime, String arrivalTime, int flightNumber, 
+			String departureDate, String arrivalDate, float price) {
 		this();
 		this.source = source;
 		this.destination = destination;
 		this.departureTime = departureTime;
 		this.arrivalTime = arrivalTime;
 		this.flightNumber = flightNumber;
+		this.departureDate = departureDate;
+		this.arrivalDate = arrivalDate;
+		this.price = price;
 
 	}
 
@@ -100,14 +115,53 @@ public class Flight {
 	public void setFlightNumber(int flightNumber) {
 		this.flightNumber = flightNumber;
 	}
-	
-//	 public void removePassenger(Passenger passenger) {
-//	        this.passengers.remove(passenger);
-//	    }
+
+	/**
+	 * @return the departureDate
+	 */
+	public String getDepartureDate() {
+		return departureDate;
+	}
+
+	/**
+	 * @param departureDate the departureDate to set
+	 */
+	public void setDepartureDate(String departureDate) {
+		this.departureDate = departureDate;
+	}
+
+	/**
+	 * @return the arrivalDate
+	 */
+	public String getArrivalDate() {
+		return arrivalDate;
+	}
+
+	/**
+	 * @param arrivalDate the arrivalDate to set
+	 */
+	public void setArrivalDate(String arrivalDate) {
+		this.arrivalDate = arrivalDate;
+	}
+
+	/**
+	 * @return the price
+	 */
+	public float getPrice() {
+		return price;
+	}
+
+	/**
+	 * @param price the price to set
+	 */
+	public void setPrice(float price) {
+		this.price = price;
+	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(arrivalTime, departureTime, destination, fId, flightNumber, passengers, source);
+		return Objects.hash(arrivalDate, arrivalTime, departureDate, departureTime, destination, fId, flightNumber,
+				passengers, price, source);
 	}
 
 	@Override
@@ -119,17 +173,22 @@ public class Flight {
 		if (getClass() != obj.getClass())
 			return false;
 		Flight other = (Flight) obj;
-		return Objects.equals(arrivalTime, other.arrivalTime) && Objects.equals(departureTime, other.departureTime)
-				&& Objects.equals(destination, other.destination) && fId == other.fId
-				&& flightNumber == other.flightNumber && Objects.equals(passengers, other.passengers)
+		return Objects.equals(arrivalDate, other.arrivalDate) && Objects.equals(arrivalTime, other.arrivalTime)
+				&& Objects.equals(departureDate, other.departureDate)
+				&& Objects.equals(departureTime, other.departureTime) && Objects.equals(destination, other.destination)
+				&& fId == other.fId && flightNumber == other.flightNumber
+				&& Objects.equals(passengers, other.passengers)
+				&& Float.floatToIntBits(price) == Float.floatToIntBits(other.price)
 				&& Objects.equals(source, other.source);
 	}
 
 	@Override
 	public String toString() {
-		return "Flight [fId=" + fId + ", source=" + source + ", destination=" + destination + ", departureTime="
-				+ departureTime + ", arrivalTime=" + arrivalTime + ", flightNumber=" + flightNumber + ", passengers="
-				+ passengers + "]";
+		return "Flight [fId=" + fId + ", source=" + source + ", destination=" + destination + ", departureDate="
+				+ departureDate + ", arrivalDate=" + arrivalDate + ", departureTime=" + departureTime + ", arrivalTime="
+				+ arrivalTime + ", price=" + price + ", flightNumber=" + flightNumber + ", passengers=" + passengers
+				+ "]";
 	}
 
+	
 }

@@ -85,14 +85,16 @@ h1 {
 						Passenger</a></td>
 				<td><a href="${pageContext.request.contextPath}/passenger/remove/<%=passenger.getpId()%>">Remove
 						Passenger</a></td>
-				<td><a href="${pageContext.request.contextPath}/ticket/<%=passenger.getpId()%>">Generate
-						Ticket</a></td>
+				<%-- <td><a href="${pageContext.request.contextPath}/ticket/<%=passenger.getpId()%>">Generate
+						Ticket</a></td> --%>
 			</tr>
 				<%
 					}	
 				}
 				%>
 				<%-- <a href="${pageContext.request.contextPath}/ticket/">Generate Ticket</a> --%>
+				 <a href="${pageContext.request.contextPath}/booking">Confirm Booking</a> 
+				
 		</tbody>
 	</table>
 </body>

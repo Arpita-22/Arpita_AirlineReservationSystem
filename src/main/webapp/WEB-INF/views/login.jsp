@@ -28,6 +28,7 @@ input[type=password],input[type=email]{
     text-align: center;
     color: lightgray;
 }
+
 </style>
 </head>
 <body>
@@ -45,6 +46,10 @@ input[type=password],input[type=email]{
 		</form>
 		<br />
 		<br />
+			<% if (session.getAttribute("User") == null ){
+			out.print("User does not exist");
+		}
+			%>
 
 
 		<%--    <br />

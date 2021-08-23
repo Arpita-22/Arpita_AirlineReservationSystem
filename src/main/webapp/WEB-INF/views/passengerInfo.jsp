@@ -67,7 +67,7 @@
 
 		<input type="button" id="btnAddd" value="Add" onclick="addPassenger()" />
 
-		<input type="submit" name="submit" value="Book" />
+		<input type="submit" name="submit" value="ConfirmPassengers" />
 	</form:form>
 
 </body>

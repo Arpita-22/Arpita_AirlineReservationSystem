@@ -12,13 +12,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class BookingServiceImpl implements BookingService {
-	
+
 	private BookingRepository bookingRepository;
-	
+
 	@Autowired
 	public BookingServiceImpl(BookingRepository bookingRepository) {
 		this.bookingRepository = bookingRepository;
-		
+
 	}
 
 	@Override
@@ -34,7 +34,11 @@ public class BookingServiceImpl implements BookingService {
 		}
 		throw new EntityNotFoundException();
 	}
-	
-	
+
+//	@Override
+//	public List<Passenger> findAllPassengers() {
+//		return null;
+//	}
+//	
 
 }

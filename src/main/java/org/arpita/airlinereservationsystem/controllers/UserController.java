@@ -8,7 +8,6 @@ import org.arpita.airlinereservationsystem.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.WebDataBinder;
@@ -36,21 +35,25 @@ public class UserController {
 	}
 
 	@PostMapping("/createUser")
-	public String createUser(@Valid @ModelAttribute("user") User user, BindingResult errors, Errors error) {
+	public String createUser(@Valid @ModelAttribute("user") User user, BindingResult errors, Errors error,
+			Model model) {
 		System.out.println("Errors? " + errors.hasErrors());
 		if (errors.hasErrors()) {
 			return "signUp";
 		}
-		
-		if(userService.findUserById(user.getuId()) != null) {
-//			error.rejectValue("User Not Found", "Sorry, User already exists");
 
-			error.reject("User Not Found", "Sorry, User already exists");
-			
-		}
+		if (userService.findByEmail(user.getEmail()) != null) {
+
+			System.out.println(userService.findByEmail(user.getEmail()));
+			errors.rejectValue("email", "errors.user", "The user is already in use");
+			model.addAttribute("error", error.getAllErrors());
+			return "signUp";
+
+		} else {
 			userService.createUser(user);
-		
-		return "redirect:/";
+			return "login";
+		}
+
 	}
 
 	@InitBinder
@@ -64,32 +67,18 @@ public class UserController {
 		return "login";
 	}
 
-//    @GetMapping("/login")
-//    public String login(Model model, String error, String logout) {
-//        if (error != null)
-//            model.addAttribute("error", "Your username and password is invalid.");
-//
-//        if (logout != null)
-//            model.addAttribute("message", "You have been logged out successfully.");
-//
-//        return "login";
-//    }
-
 	@PostMapping("/checkUser")
 	public String checkPassenger(@RequestParam("email") String email, @RequestParam("password") String password,
-			HttpSession session, ModelMap modelMap, Model model) {
+			HttpSession session, Model model) {
 
 		User existing = userService.findByEmail(email);
 
 		if (existing != null) {
 			if (password.equals(existing.getPassword()) && email.equals(existing.getEmail())) {
-				System.out.println("Passwords matched.");
 				session.setAttribute("currentUser", existing);
 				return "redirect:/";
 			}
 		}
-		model.addAttribute("error", "Invalid Account");
-		modelMap.put("error", "Invalid Account");
 		return "login";
 	}
 

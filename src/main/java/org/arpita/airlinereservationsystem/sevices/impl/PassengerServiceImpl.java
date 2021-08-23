@@ -23,7 +23,7 @@ public class PassengerServiceImpl implements PassengerService {
 
 	@Override
 	public Passenger createPassenger(Passenger passenger) {
-		return passengerRepository.save(passenger);
+		return passengerRepository.saveAndFlush(passenger);
 	}
 
 	@Override

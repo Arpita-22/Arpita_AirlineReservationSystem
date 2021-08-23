@@ -6,9 +6,10 @@
   <packaging>war</packaging>
  <properties>
   <java.version>11</java.version>
-		<spring.version>5.2.13.RELEASE</spring.version>
+		<spring.version>5.3.9</spring.version>
 		<springdata.version>2.3.8.RELEASE</springdata.version>
 		<hibernate.version>5.4.1.Final</hibernate.version>
+		<springsecurityversion>5.5.1</springsecurityversion>
   </properties>
   <dependencies>
   	<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
@@ -91,8 +92,22 @@
 		    <artifactId>json</artifactId>
 		    <version>20210307</version>
 		</dependency>
-		
-							
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${springsecurityversion}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${springsecurityversion}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>${springsecurityversion}</version>
+		</dependency>
+									
   </dependencies>
   <build>
     <plugins>
