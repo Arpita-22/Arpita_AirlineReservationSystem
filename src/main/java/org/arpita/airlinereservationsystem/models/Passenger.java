@@ -1,20 +1,19 @@
 package org.arpita.airlinereservationsystem.models;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "passengers")
@@ -33,22 +32,19 @@ public class Passenger {
 
 //	@Column(unique = true)
 	@NotEmpty(message = "email must not be empty")
+	@Email
 	private String email;
 
-//	@Column(nullable = false)
+	@Column(nullable = false)
 	@NotNull(message = "dateOfBirth must not be null")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-//	@JsonFormat(pattern = "yyyy-MM-dd", lenient = OptBoolean.FALSE)
-	private Date dateOfBirth;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate dateOfBirth;
 
 	@Column(nullable = false)
 	@NotEmpty(message = "gender must not be empty")
 	private String gender;
 
 	private String personalId;
-	
-//	@ManyToOne(targetEntity = Booking.class)
-//	private Booking booking;
 
 	public Passenger() {
 
@@ -57,16 +53,16 @@ public class Passenger {
 	public Passenger(@NotEmpty(message = "firstName must not be empty") String firstName,
 			@NotEmpty(message = "lastName must not be empty") String lastName,
 			@NotEmpty(message = "email must not be empty") String email,
-			@NotNull(message = "dateOfBirth must not be null") Date dateOfBirth,
+			@NotNull(message = "dateOfBirth must not be null") LocalDate dateOfBirth,
 			@NotEmpty(message = "gender must not be empty") String gender, String personalId) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
-		this.dateOfBirth = new Date(dateOfBirth.getTime());
+		this.dateOfBirth = dateOfBirth;
 		this.gender = gender;
 		this.personalId = personalId;
-//		this.booking = booking;
+
 	}
 
 	public int getpId() {
@@ -101,12 +97,12 @@ public class Passenger {
 		this.email = email;
 	}
 
-	public Date getDateOfBirth() {
+	public LocalDate getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(Date dateOfBirth) {
-//		this.dateOfBirth = new Date(dateOfBirth.getTime());
+	public void setDateOfBirth(LocalDate dateOfBirth) {
+
 		this.dateOfBirth = dateOfBirth;
 	}
 
@@ -137,42 +133,7 @@ public class Passenger {
 	public void setPersonalId(String personalId) {
 		this.personalId = personalId;
 	}
-//
-//	@Override
-//	public int hashCode() {
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//		String dob = sdf.format(dateOfBirth);
-//		return Objects.hash(dob, email, firstName, gender, lastName, pId, personalId);
-//	}
-//
-//	@Override
-//	public boolean equals(Object obj) {
-//		if (this == obj)
-//			return true;
-//		if (obj == null)
-//			return false;
-//		if (getClass() != obj.getClass())
-//			return false;
-//		Passenger other = (Passenger) obj;
-//		
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//		String dob = sdf.format(dateOfBirth);
-//		String otherDob = sdf.format(other.dateOfBirth);
-//		return Objects.equals(dob, otherDob)
-//				&& Objects.equals(email, other.email)
-//				&& Objects.equals(firstName, other.firstName) && Objects.equals(gender, other.gender)
-//				&& Objects.equals(lastName, other.lastName) && pId == other.pId
-//				&& Objects.equals(personalId, other.personalId);
-//	}
-//
-//	@Override
-//	public String toString() {
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//		String dob = sdf.format(dateOfBirth);
-//		
-//		return "Passenger [pId=" + pId + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-//				+ ", dateOfBirth=" + dob + ", gender=" + gender + ", personalId=" + personalId + "]";
-//	}
+
 
 	@Override
 	public int hashCode() {
@@ -199,8 +160,5 @@ public class Passenger {
 		return "Passenger [pId=" + pId + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
 				+ ", dateOfBirth=" + dateOfBirth + ", gender=" + gender + ", personalId=" + personalId + "]";
 	}
-
-
-
 
 }

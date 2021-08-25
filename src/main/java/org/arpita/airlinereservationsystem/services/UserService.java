@@ -17,6 +17,10 @@ public interface UserService {
 	User save(User user);
 
 	User findByEmail(String email);
-//	Passenger findFlight(int pId);
+	
+	User findByUsername(String username);
+	
+	void removeUser(User user);
+
 
 }

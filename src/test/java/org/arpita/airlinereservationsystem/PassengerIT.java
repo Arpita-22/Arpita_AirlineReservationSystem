@@ -1,18 +1,17 @@
 package org.arpita.airlinereservationsystem;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.time.LocalDate;
+
 import org.arpita.airlinereservationsystem.config.WebAppConfig;
-import org.arpita.airlinereservationsystem.models.User;
-import org.arpita.airlinereservationsystem.services.UserService;
+import org.arpita.airlinereservationsystem.models.Passenger;
+import org.arpita.airlinereservationsystem.services.PassengerService;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -22,48 +21,48 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @ContextConfiguration(classes = { WebAppConfig.class })
 @WebAppConfiguration("webapp")
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
- class UserIT {
+class PassengerIT {
 	
-private UserService userService;
-private User expected;
-
-
+	private PassengerService passengerService;
 	
+	private Passenger expected;
+	
+
 	@Autowired
-	public UserIT( UserService userService) {
-		this.userService = userService;
+	public PassengerIT( PassengerService passengerService) {
+		this.passengerService = passengerService;
 	}
-	
+		
+
 	@BeforeAll
 	void setup() {
+		
+		Passenger passenger = new Passenger();
+		
+		passenger.setFirstName("firstName");
+		passenger.setLastName("lastName");
+		passenger.setEmail("email@email.com");
+		passenger.setDateOfBirth(LocalDate.now());
+		passenger.setGender("gender");
+		passenger.setPersonalId("personalId");
+		
+		expected = passengerService.createPassenger(passenger);
 
-		User u = new User();
-		u.setFirstName("John");
-		u.setLastName("Doe");
-		u.setUsername("John");
-		u.setEmail("john@email.com");
-		u.setPassword("john1234");
-		expected = userService.createUser(u);
+
 	}
+	
 	
 	@AfterAll
 	void clearSetup() {
-		userService.removeUser(expected);
+		passengerService.removePassenger(expected);
 	}
 	
 	
 	@Test
-	void testFindUserById() {
-		User actual = userService.findUserById(expected.getuId());
+	void testFindPassengerById() {
+		Passenger actual = passengerService.findPassengerById(expected.getpId());
 		assertEquals(expected, actual);
+		
 	}
-	
-	@ParameterizedTest
-	@ValueSource(strings = "John")
-	void testFindByUsername(String username) {
-		User actual = userService.findByUsername(username);
-		assertEquals(expected, actual);
-	}
-	
 
 }

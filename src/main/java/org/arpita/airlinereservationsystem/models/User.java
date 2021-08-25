@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "users")
@@ -29,7 +30,11 @@ public class User {
 	@NotEmpty(message="lastName must not be empty")
 	private String lastName;
 	
-	@Column(nullable=false, unique = true)
+	@Column(unique = true)
+	@NotEmpty(message="username must not be empty")
+	private String username;
+	
+	@Column(nullable=false)
 	@NotEmpty(message="email must not be empty")
 	@Email
 	private String email;
@@ -42,13 +47,13 @@ public class User {
 		
 	}
 	
-	public User(String firstName, String lastName, String email, String password) {
+	public User(String firstName, String lastName, String email, String username, String password) {
 		this();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
-			
+		this.username = username;
 		}
 
 	public int getuId() {
@@ -81,6 +86,14 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {
@@ -116,6 +129,4 @@ public class User {
 				+ ", password=" + password + "]";
 	}
 	
-	
-
 }

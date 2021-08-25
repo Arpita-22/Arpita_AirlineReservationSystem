@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page import="org.arpita.airlinereservationsystem.models.User"%>
+  <%@ page import="org.springframework.security.core.userdetails.UserDetails"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,18 +28,24 @@
         <h2 id="main-container-item">Fly with us</h2>
         <nav>
             <ul>
+	
 				<%
-				if (session.getAttribute("currentUser") != null) {
+				User user = (User)request.getAttribute("currentUser");
+				if (user != null) {	
 				%>
-				<li>Welcome ${currentUser.getFirstName()}</li>
+				 <li>Welcome <%= user.getFirstName() %> !</li> 
 				<%
 				} else {
 				%>
 				<li><a href="${pageContext.request.contextPath}/login"> Login</a></li>
 				<%
 				}
-				%>
-				<%-- <li><a href="${pageContext.request.contextPath}/login"> Login</a></li> --%>
+				%> 
+			
+				
+				
+				
+			    <%-- <li><a href="${pageContext.request.contextPath}/login"> Login</a></li>  --%>
                 <li><a href="${pageContext.request.contextPath}/signUp"> SignUp</a></li>
                 <li><a href="#" target="_blank"> Flight </a></li>
                 <li><a href="#" target="_blank"> Travel Info</a></li> 

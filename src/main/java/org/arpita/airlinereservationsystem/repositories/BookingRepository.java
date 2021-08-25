@@ -1,11 +1,13 @@
 package org.arpita.airlinereservationsystem.repositories;
 
+import java.util.List;
+
 import org.arpita.airlinereservationsystem.models.Booking;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface BookingRepository extends JpaRepository<Booking, Integer> {
+	
+	List<Booking> findByUser_username(String username);
 
-//	@Query("SELECT b FROM Booking b LEFT JOIN FETCH b.passengers")
-//	List<Passenger> findAllPassengers();
-
+	
 }

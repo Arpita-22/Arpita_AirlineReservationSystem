@@ -51,4 +51,12 @@ public class PassengerServiceImpl implements PassengerService {
 		return passengerRepository.save(passenger);
 	}
 
+	@Override
+	public void removePassenger(Passenger passenger) {
+		passengerRepository.delete(passenger);
+		
+	}
+	
+	
+
 }

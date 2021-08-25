@@ -54,9 +54,18 @@ public class UserServiceImpl implements UserService {
 		return userRepository.findByEmail(email);
 	}
 
-//	@Override
-//	public Passenger findFlight(int pId) {
-//		return passengerRepository.findFlight(pId);
-//	}
+	@Override
+	public User findByUsername(String username) {
+		return userRepository.findByUsername(username);
+	}
+
+	@Override
+	public void removeUser(User user) {
+		userRepository.delete(user);
+		
+	}
+
+	
+	
 
 }

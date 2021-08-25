@@ -2,12 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page import="org.arpita.airlinereservationsystem.models.Passenger"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Update Passenger Info</title>
-<!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
 </head>
 <body>
 	<h1>Update Passenger Info</h1>

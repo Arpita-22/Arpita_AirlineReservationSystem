@@ -1,5 +1,7 @@
 package org.arpita.airlinereservationsystem.services;
 
+import java.util.List;
+
 import org.arpita.airlinereservationsystem.models.Booking;
 
 public interface BookingService {
@@ -7,6 +9,9 @@ public interface BookingService {
 	Booking save(Booking booking);
 
 	Booking findBookingById(int bId);
-//	List<Passenger> findAllPassengers();
+
+	void removeBooking(Booking booking);
+	
+	List <Booking> findByUser_username(String username);
 
 }

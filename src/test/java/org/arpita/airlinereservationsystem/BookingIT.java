@@ -1,7 +1,9 @@
 package org.arpita.airlinereservationsystem;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.arpita.airlinereservationsystem.config.WebAppConfig;
@@ -13,10 +15,13 @@ import org.arpita.airlinereservationsystem.services.BookingService;
 import org.arpita.airlinereservationsystem.services.FlightService;
 import org.arpita.airlinereservationsystem.services.PassengerService;
 import org.arpita.airlinereservationsystem.services.UserService;
-import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -33,6 +38,9 @@ class BookingIT {
 	private BookingService bookingService;
 	private PassengerService passengerService;
 	private UserService userService;
+	
+	private Booking expected;
+	private User user;
 
 	@Autowired
 	public BookingIT(FlightService flightService, BookingService bookingService, PassengerService passengerService,
@@ -42,31 +50,63 @@ class BookingIT {
 		this.passengerService = passengerService;
 		this.userService = userService;
 	}
-
-	@Test
-	void testFindBookingById() {
+	
+	
+	@BeforeAll
+	void setup() {
 		Flight flight = flightService.findFlightById(9);
-		User user = userService.findUserById(1);
+
+		User u = new User();
+		u.setFirstName("John");
+		u.setLastName("Doe");
+		u.setUsername("John");
+		u.setEmail("john@email.com");
+		u.setPassword("john1234");
+		user = userService.createUser(u);
+		
+		
 		List<Passenger> passengers = new ArrayList<>();
-		passengers.add(new Passenger("firstName", "lastName", "email", new Date(), "gender", "personalId"));
+		Passenger passenger = new Passenger();
+		
+		passenger.setFirstName("firstName");
+		passenger.setLastName("lastName");
+		passenger.setEmail("email@email.com");
+		passenger.setDateOfBirth(LocalDate.now());
+		passenger.setGender("gender");
+		passenger.setPersonalId("personalId");
+		
+		passengers.add(passengerService.save(passenger));
 
 		Booking newBooking = new Booking(flight, user, passengers);
-		Booking savedBooking = bookingService.save(newBooking);
-		Booking foundBooking = bookingService.findBookingById(savedBooking.getbId());
-
-		System.out.println(savedBooking);
-		System.out.println(foundBooking);
-//		Assertions.assertEquals(savedBooking.toString(), foundBooking.toString());
-		Assertions.assertNotNull(foundBooking);
-		
-//		
-//		Booking foundBooking = bookingService.findBookingById(1);
-//		System.out.println(foundBooking);
-//		
-//		Assertions.assertNotNull(foundBooking);
+		 expected = bookingService.save(newBooking);
 
 	}
 	
+	@AfterAll
+	void clearSetup() {
+		
+		bookingService.removeBooking(expected);
+		userService.removeUser(user);
+	}
+	
+	@Test
+	void testFindUserById() {
+		
+		Booking actual = bookingService.findBookingById(expected.getbId());
+		assertEquals(expected.toString(), actual.toString());
+	}
+	
+	
+	
+	@ParameterizedTest
+	@ValueSource(strings = "John")
+	void testFindByUser_username(String username) {
+		
+		List<Booking> actual = bookingService.findByUser_username(username);	
+		assertEquals(expected.toString(),actual.get(0).toString());
+				
+		
+	}
 	
 
 }

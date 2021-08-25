@@ -1,11 +1,17 @@
 package org.arpita.airlinereservationsystem;
 
+import java.time.LocalDate;
+
 import org.arpita.airlinereservationsystem.config.WebAppConfig;
+import org.arpita.airlinereservationsystem.models.Passenger;
 import org.arpita.airlinereservationsystem.models.Ticket;
+import org.arpita.airlinereservationsystem.services.BookingService;
 import org.arpita.airlinereservationsystem.services.FlightService;
 import org.arpita.airlinereservationsystem.services.PassengerService;
 import org.arpita.airlinereservationsystem.services.TicketService;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,15 +27,36 @@ import org.springframework.test.context.web.WebAppConfiguration;
 class TicketIT {
 	
 	private TicketService ticketService;
-	private PassengerService passengerService;
-	private FlightService flightService;
+	private BookingService bookingService;
+	
+	
+	private Ticket expected;
 
 	@Autowired
-	public TicketIT (TicketService ticketService,PassengerService passengerService,FlightService flightService) {
+	public TicketIT (TicketService ticketService, BookingService bookingService) {
 		this.ticketService = ticketService;
-		this.passengerService = passengerService;
-		this.flightService = flightService;
+		this.bookingService = bookingService;
 	}
+	
+	
+	@BeforeAll
+	void setup() {
+		
+		Ticket ticket = new Ticket();
+		
+		
+		
+//		expected = TicketService.;
+
+
+	}
+	
+	
+	@AfterAll
+	void clearSetup() {
+//		passengerService.removePassenger(expected);
+	}
+	
 	
 	
 //	@Test

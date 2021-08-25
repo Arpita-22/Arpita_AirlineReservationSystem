@@ -72,6 +72,12 @@ h1 {
 				placeholder="email" />
 			<form:errors path="email" class="form-errors" />
 			<br />
+			
+			<form:label path="username" for="username">Username</form:label>
+			<form:input path="username" id="username" type="text" name="username"
+				placeholder="username" />
+			<form:errors path="username" class="form-errors" />
+			<br />
 
 			<form:label path="password" for="password">Password</form:label>
 			<form:input path="password" id="pass" type="password" name="password"
@@ -86,11 +92,11 @@ h1 {
 
 
 		<h1 id="signUp-h1"></h1>
-		<% if (request.getAttribute("error") != null ){
+		<%-- <% if (request.getAttribute("error") != null ){
 			out.print("User already exists");
 		}
 			%>
-
+ --%>
 	</div>
 </body>
 

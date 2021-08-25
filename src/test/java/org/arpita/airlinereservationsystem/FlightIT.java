@@ -25,8 +25,8 @@ import org.springframework.test.context.web.WebAppConfiguration;
 	public FlightIT(FlightService flightService) {
 		this.flightService = flightService;
 	}
-
-
+	
+	
 	@Test
 	void testFindFlightById() {
 		Flight foundFlight = flightService.findFlightById(1);
@@ -69,17 +69,5 @@ import org.springframework.test.context.web.WebAppConfiguration;
 		
 	}
 	
-//	@Test
-//	void testRemovePassenger() {
-//		Iterable<Passenger> passengers = flightService.findFlightById(1).getPassengers();
-//		Flight removedPassenger = null;
-//		for(Passenger passenger: passengers) {
-//			System.out.println(passenger);
-//			if(passenger.getpId() == 33) {
-//				removedPassenger = flightService.removePassenger(passenger);
-//			}
-//		}
-//		Assertions.assertFalse(flightService.findFlightById(1).getPassengers().contains(removedPassenger));
-//	}
 
 }

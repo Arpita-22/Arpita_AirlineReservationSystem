@@ -1,11 +1,12 @@
 package org.arpita.airlinereservationsystem.controllers;
 
-import javax.servlet.http.HttpSession;
+
 import javax.validation.Valid;
 
 import org.arpita.airlinereservationsystem.models.User;
 import org.arpita.airlinereservationsystem.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,25 +16,30 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class UserController {
 
 	private UserService userService;
+	private PasswordEncoder passwordEncoder;
 
 	@Autowired
-	public UserController(UserService userService) {
+	public UserController(UserService userService, PasswordEncoder passwordEncoder) {
 		this.userService = userService;
-
+		this.passwordEncoder = passwordEncoder;
 	}
+	
+	
 
 	@GetMapping("/signUp")
 	public String showSignUpPage(Model model) {
 		model.addAttribute("user", new User());
 		return "signUp";
 	}
+	
+	
 
+	@SuppressWarnings("finally")
 	@PostMapping("/createUser")
 	public String createUser(@Valid @ModelAttribute("user") User user, BindingResult errors, Errors error,
 			Model model) {
@@ -41,56 +47,41 @@ public class UserController {
 		if (errors.hasErrors()) {
 			return "signUp";
 		}
-
-		if (userService.findByEmail(user.getEmail()) != null) {
-
-			System.out.println(userService.findByEmail(user.getEmail()));
-			errors.rejectValue("email", "errors.user", "The user is already in use");
-			model.addAttribute("error", error.getAllErrors());
+		
+		try {
+		
+		if (userService.findByUsername(user.getUsername()) != null) {
+			errors.rejectValue("username", "errors.user", "The user is already in use");
+//			model.addAttribute("error", error.getAllErrors());
 			return "signUp";
-
-		} else {
+		}
+		}catch(NullPointerException e) {
+			e.getMessage();
+		}finally {
+			
+			user.setPassword(passwordEncoder.encode(user.getPassword()));
 			userService.createUser(user);
 			return "login";
+		
+			
 		}
+				
 
 	}
-
+	
+	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-		binder.setAllowedFields("firstName", "lastName", "email", "password");
+		binder.setAllowedFields("firstName", "lastName", "email", "password", "username");
 
 	}
 
 	@GetMapping("/login")
-	public String showLoginPage() {
+	public String showLoginPage(Model model) {	
 		return "login";
 	}
-
-	@PostMapping("/checkUser")
-	public String checkPassenger(@RequestParam("email") String email, @RequestParam("password") String password,
-			HttpSession session, Model model) {
-
-		User existing = userService.findByEmail(email);
-
-		if (existing != null) {
-			if (password.equals(existing.getPassword()) && email.equals(existing.getEmail())) {
-				session.setAttribute("currentUser", existing);
-				return "redirect:/";
-			}
-		}
-		return "login";
-	}
-
-	@GetMapping("/welcome")
-	public String showWelcomePage() {
-		return "welcome";
-	}
-
-	@GetMapping("/logout")
-	public String showLogoutPage(HttpSession session) {
-		session.invalidate();
-		return "redirect:/";
-	}
-
+	
+	
 }
+
+

@@ -1,5 +1,6 @@
 package org.arpita.airlinereservationsystem.sevices.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
@@ -25,6 +26,7 @@ public class BookingServiceImpl implements BookingService {
 	public Booking save(Booking booking) {
 		return bookingRepository.save(booking);
 	}
+	
 
 	@Override
 	public Booking findBookingById(int bId) {
@@ -34,11 +36,20 @@ public class BookingServiceImpl implements BookingService {
 		}
 		throw new EntityNotFoundException();
 	}
+	
 
-//	@Override
-//	public List<Passenger> findAllPassengers() {
-//		return null;
-//	}
-//	
+	@Override
+	public void removeBooking(Booking booking) {
+		bookingRepository.delete(booking);
+		
+	}
+
+	@Override
+	public List<Booking> findByUser_username(String username) {
+		return bookingRepository.findByUser_username(username);
+	}
+	
+	
+
 
 }
