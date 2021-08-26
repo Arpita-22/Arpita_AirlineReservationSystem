@@ -2,6 +2,7 @@ package org.arpita.airlinereservationsystem.services;
 
 import java.util.List;
 
+import org.arpita.airlinereservationsystem.exception.ReservationException;
 import org.arpita.airlinereservationsystem.models.Booking;
 
 public interface BookingService {
@@ -12,6 +13,6 @@ public interface BookingService {
 
 	void removeBooking(Booking booking);
 	
-	List <Booking> findByUser_username(String username);
+	List <Booking> findByUser_username(String username)throws ReservationException;
 
 }

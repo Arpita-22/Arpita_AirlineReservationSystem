@@ -22,47 +22,43 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @WebAppConfiguration("webapp")
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class PassengerIT {
-	
+
 	private PassengerService passengerService;
-	
+
 	private Passenger expected;
-	
 
 	@Autowired
-	public PassengerIT( PassengerService passengerService) {
+	public PassengerIT(PassengerService passengerService) {
 		this.passengerService = passengerService;
 	}
-		
 
 	@BeforeAll
 	void setup() {
-		
+
 		Passenger passenger = new Passenger();
-		
+
 		passenger.setFirstName("firstName");
 		passenger.setLastName("lastName");
 		passenger.setEmail("email@email.com");
 		passenger.setDateOfBirth(LocalDate.now());
 		passenger.setGender("gender");
 		passenger.setPersonalId("personalId");
-		
+
 		expected = passengerService.createPassenger(passenger);
 
+	}
 
-	}
-	
-	
-	@AfterAll
-	void clearSetup() {
-		passengerService.removePassenger(expected);
-	}
-	
-	
+
 	@Test
 	void testFindPassengerById() {
 		Passenger actual = passengerService.findPassengerById(expected.getpId());
 		assertEquals(expected, actual);
-		
+
+	}
+	
+	@AfterAll
+	void clearSetup() {
+		passengerService.removePassenger(expected);
 	}
 
 }

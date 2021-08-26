@@ -1,6 +1,9 @@
 @charset "UTF-8";
 
-passengerSignUpForm{
+body{
+  background: linear-gradient(to right, #696969 0%, #C0C0C0 100%);
+}
+passengerSignUpForm,passengerUpdateForm {
 	width:200px;
     padding:20px;
 }
@@ -10,14 +13,42 @@ passengerSignUpForm{
 }
 
 
-input[type=text], input[type=email], input[type=date]{
+ input[type=text], input[type=email], input[type=date]{
 	  padding:10px;
       margin:10px 0;
       box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
       border-radius:10px;
-      width:25%;
+      width:70% ;
+      height: 40px;
+     flex: 0 0 200px;
+    margin-left: 10px;
 }
- 
+
+input[type=submit], input[type=button]{
+	width: 30%;
+	height: 30%;
+	margin-top: 20px;
+} 
+
+input {
+  height: 50px;
+  flex: 0 0 200px;
+  margin-left: 10px;
+  
+}
+
+label {
+  display: inline-block;
+  flex-direction: column;
+  justify-content: flex-end;
+  text-align: left;
+  width: 100px;
+  line-height: 26px;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+
 
 .border-customized-input {
    border: 2px solid #eee;
@@ -27,4 +58,28 @@ input[type=text], input[type=email], input[type=date]{
   border:0;
   border-bottom:1px solid #eee;
 }
+
+ form{
+	background: linear-gradient(to right, #696969 0%, #C0C0C0 100%);
+	width: 50%;
+	height: 80%;
+	padding: 0px;
+	margin: 0px 0px 0px 417px;	
+} 
+
+fieldset{
+	width: 100%;
+	margin-bottom:10px;
+	border: none;
+}
+
+#removePax {
+	color: red;
+	background-color: transparent;
+	width: 150px;
+	border: none;
+	font-weight: bolder;
+	margin: 0 0 0 450px;
+}
+
 

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.arpita.airlinereservationsystem.config.WebAppConfig;
+import org.arpita.airlinereservationsystem.exception.ReservationException;
 import org.arpita.airlinereservationsystem.models.Booking;
 import org.arpita.airlinereservationsystem.models.Flight;
 import org.arpita.airlinereservationsystem.models.Passenger;
@@ -41,10 +42,16 @@ class BookingIT {
 	
 	private Booking expected;
 	private User user;
+	private Flight flight;
+	private List<Passenger> passengers;
+	
+	private List<Booking> bookings;
 
 	@Autowired
 	public BookingIT(FlightService flightService, BookingService bookingService, PassengerService passengerService,
 			UserService userService) {
+		this.passengers = new ArrayList<>();
+		this.bookings = new ArrayList<>();
 		this.flightService = flightService;
 		this.bookingService = bookingService;
 		this.passengerService = passengerService;
@@ -54,8 +61,7 @@ class BookingIT {
 	
 	@BeforeAll
 	void setup() {
-		Flight flight = flightService.findFlightById(9);
-
+		
 		User u = new User();
 		u.setFirstName("John");
 		u.setLastName("Doe");
@@ -63,35 +69,41 @@ class BookingIT {
 		u.setEmail("john@email.com");
 		u.setPassword("john1234");
 		user = userService.createUser(u);
-		
-		
-		List<Passenger> passengers = new ArrayList<>();
+
 		Passenger passenger = new Passenger();
-		
+
 		passenger.setFirstName("firstName");
 		passenger.setLastName("lastName");
 		passenger.setEmail("email@email.com");
 		passenger.setDateOfBirth(LocalDate.now());
 		passenger.setGender("gender");
 		passenger.setPersonalId("personalId");
+
+		passengers.add(passenger);
 		
-		passengers.add(passengerService.save(passenger));
+		Flight f = new Flight();
+		f.setFlightNumber(123);
+		f.setSource("Georgia");
+		f.setDestination("New York");
+		f.setDepartureDate("2021-08-22");
+		f.setArrivalDate("2021-08-23");
+		f.setDepartureTime("5:00 am");
+		f.setArrivalTime("8:00 am");
+		f.setPrice(50);
+		f.setPassengers(passengers);
+		flight = flightService.save(f);
 
 		Booking newBooking = new Booking(flight, user, passengers);
+
 		 expected = bookingService.save(newBooking);
+		 
+		 bookings.add(expected);
 
 	}
 	
-	@AfterAll
-	void clearSetup() {
-		
-		bookingService.removeBooking(expected);
-		userService.removeUser(user);
-	}
 	
 	@Test
-	void testFindUserById() {
-		
+	void testFindBookingById() {		
 		Booking actual = bookingService.findBookingById(expected.getbId());
 		assertEquals(expected.toString(), actual.toString());
 	}
@@ -99,13 +111,29 @@ class BookingIT {
 	
 	
 	@ParameterizedTest
-	@ValueSource(strings = "John")
+	@ValueSource(strings = {"John"})
 	void testFindByUser_username(String username) {
 		
-		List<Booking> actual = bookingService.findByUser_username(username);	
-		assertEquals(expected.toString(),actual.get(0).toString());
+		try {
+			List<Booking> actual;
+			actual = bookingService.findByUser_username(username);
+//			assertEquals(expected.toString(),actual.get(0).toString());
+			assertEquals(bookings.size(), actual.size());
+		} catch (ReservationException e) {
+			e.getMessage();
+		}	
 				
 		
+	}
+	
+	
+	@AfterAll
+	void clearSetup() {	
+		for(Booking booking: bookings) {
+			bookingService.removeBooking(booking);
+		}
+		flightService.removeFlight(flight);
+		userService.removeUserById(user.getuId());
 	}
 	
 

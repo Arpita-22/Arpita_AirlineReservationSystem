@@ -29,7 +29,7 @@ public class PassengerController {
 	}
 
 
-	@GetMapping("/passengerInfo")
+	@GetMapping("/passenger_info")
 	public String showPassengerPage(Model model) {
 		
 		model.addAttribute("passenger", new Passenger());
@@ -38,7 +38,7 @@ public class PassengerController {
 		model.addAttribute("passengerList", passengerList);
 		System.out.println(model);
 
-		return "passengerInfo";
+		return "passenger_info";
 	}
 
 	@PostMapping("/createPassenger")
@@ -59,7 +59,7 @@ public class PassengerController {
 		session.setAttribute("currentPassengersInSession", passengerList);
 		model.addAttribute("passengers", passengerList.getPassengerList());
 		
-		return "passengerList";
+		return "passenger_list";
 	}
 	
 
@@ -85,7 +85,7 @@ public class PassengerController {
 		session.setAttribute("currentPassengersInSession", new PassengerList(updatedPaxList));
 		model.addAttribute("passengers", updatedPaxList);
 
-		return "passengerList";
+		return "passenger_list";
 
 	}
 
@@ -95,7 +95,7 @@ public class PassengerController {
 		
 		model.addAttribute("passenger", passengerService.findPassengerById(passengerId));
 		session.setAttribute("passengerId", passengerId);
-		return "updatePassengerInfo";
+		return "update_passenger_info";
 	}
 	
 
@@ -125,7 +125,7 @@ public class PassengerController {
 		model.addAttribute("passengers", updatedPaxList);
 		
 
-		return "passengerList";
+		return "passenger_list";
 
 	}
 	

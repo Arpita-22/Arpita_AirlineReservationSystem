@@ -1,5 +1,6 @@
 package org.arpita.airlinereservationsystem.repositories;
 
+import org.arpita.airlinereservationsystem.exception.ReservationException;
 import org.arpita.airlinereservationsystem.models.User;
 import org.springframework.data.repository.CrudRepository;
 

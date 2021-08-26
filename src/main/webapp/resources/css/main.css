@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
 
 img + h3{
     color: blue;
@@ -11,12 +11,15 @@ h2, footer{
     color: blue;    
 }
 
-h2, li, h3{
-    font-family: 'Dancing Script', cursive;
+#main-container-item{
+	color: dodgerblue;
 }
 
+
+
 nav{
-    background-color: blue;
+     background-color: dodgerblue; 
+   /*  background-image: url("images/california.jpg"); */
     height: 2em; 
 }
 
@@ -44,10 +47,18 @@ a{
 img{
     height: 100%;
     width: 100%;
+    animation: slider 9s infinite linear;
 }
 
 .container-body{
     display: flex;
+}
+
+@keyFrames slider{
+	0%{background-image: url("images/Destination.jpg");}
+	35%{ background-image: url("images/source.jpg");}
+	75%{background-image: url("images/jonathan-bean-Ejpx_sdKEKo-unsplash.jpg");}
+	
 }
 
 h3::first-letter {
@@ -62,5 +73,14 @@ a:hover {
 input[type=submit]{
     background-color: red;
     color: white;
+    height: 20px;
         
 }
+
+
+label{
+	color: black;
+}
+
+
+

@@ -4,6 +4,7 @@ package org.arpita.airlinereservationsystem;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.arpita.airlinereservationsystem.config.WebAppConfig;
+import org.arpita.airlinereservationsystem.exception.ReservationException;
 import org.arpita.airlinereservationsystem.models.User;
 import org.arpita.airlinereservationsystem.services.UserService;
 import org.junit.jupiter.api.AfterAll;
@@ -46,10 +47,6 @@ private User expected;
 		expected = userService.createUser(u);
 	}
 	
-	@AfterAll
-	void clearSetup() {
-		userService.removeUser(expected);
-	}
 	
 	
 	@Test
@@ -59,11 +56,15 @@ private User expected;
 	}
 	
 	@ParameterizedTest
-	@ValueSource(strings = "John")
+	@ValueSource(strings = {"John"})
 	void testFindByUsername(String username) {
 		User actual = userService.findByUsername(username);
 		assertEquals(expected, actual);
-	}
+		}
 	
-
+	
+	@AfterAll
+	void clearSetup() {
+		userService.removeUser(expected);
+	}
 }

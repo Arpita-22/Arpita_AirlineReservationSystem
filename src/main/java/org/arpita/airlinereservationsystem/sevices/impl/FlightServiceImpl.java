@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
 
+import org.arpita.airlinereservationsystem.exception.ReservationException;
 import org.arpita.airlinereservationsystem.models.Flight;
 import org.arpita.airlinereservationsystem.repositories.FlightRepository;
 import org.arpita.airlinereservationsystem.services.FlightService;
@@ -24,6 +25,12 @@ public class FlightServiceImpl implements FlightService {
 //	public Flight findAllPassengers(int fId) {
 //		return flightRepository.findAllPassengers(fId);
 //	}
+	
+	
+	@Override
+	public Flight save(Flight flight) {
+		return flightRepository.save(flight);
+	}
 
 	@Override
 	public Flight findFlightById(int id) {
@@ -34,10 +41,6 @@ public class FlightServiceImpl implements FlightService {
 		throw new EntityNotFoundException();
 	}
 
-	@Override
-	public Flight save(Flight flight) {
-		return flightRepository.save(flight);
-	}
 
 	@Override
 	public Iterable<Flight> getAllFlights() {
@@ -46,20 +49,24 @@ public class FlightServiceImpl implements FlightService {
 	}
 
 	@Override
-	public Iterable<Flight> findBySourceAndDestinationAndArrivalTimeAndDepartureTime(String source, String destination,
-			String arrivalTime, String departureTime) {
-		Iterable<Flight> optFlight = flightRepository.findBySourceAndDestinationAndArrivalTimeAndDepartureTime(source,
-				destination, arrivalTime, departureTime);
-		return optFlight;
+	public Iterable<Flight> findBySourceAndDestinationAndArrivalDateAndDepartureDate(String source, String destination,
+			String arrivalDate, String departureDate) throws ReservationException {
+		return flightRepository.findBySourceAndDestinationAndArrivalDateAndDepartureDate(source, destination,
+				arrivalDate, departureDate);
 	}
 
 	@Override
-	public Iterable<Flight> findBySourceAndDestination(String source, String destination) {
-		Iterable<Flight> optFlight = flightRepository.findBySourceAndDestination(source, destination);
-		return optFlight;
+	public Iterable<Flight> findBySourceAndDestination(String source, String destination) throws ReservationException {
+		return flightRepository.findBySourceAndDestination(source, destination);
 	}
 
+	@Override
+	public void removeFlight(Flight flight) {
+		flightRepository.delete(flight);
+		
+	}
 
+	
 	
 
 }

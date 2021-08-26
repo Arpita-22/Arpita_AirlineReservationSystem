@@ -29,15 +29,14 @@ public class PassengerServiceImpl implements PassengerService {
 	@Override
 	public Passenger findPassengerById(int id) {
 		Optional<Passenger> optPass = passengerRepository.findById(id);
-		if(optPass.isPresent()) {
+		if (optPass.isPresent()) {
 			return optPass.get();
 		}
-		
 		throw new EntityNotFoundException();
 	}
 
 	@Override
-	public List<Passenger> getAllPassengers(){
+	public List<Passenger> getAllPassengers() {
 		return passengerRepository.findAll();
 	}
 
@@ -54,6 +53,12 @@ public class PassengerServiceImpl implements PassengerService {
 	@Override
 	public void removePassenger(Passenger passenger) {
 		passengerRepository.delete(passenger);
+
+	}
+
+	@Override
+	public void removePassengers(List<Passenger> passengers) {
+		passengerRepository.deleteAll(passengers);
 		
 	}
 	

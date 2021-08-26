@@ -1,65 +1,67 @@
-body{
-    height: 600px;
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Do not repeat the image */
-    background-size: cover;
-    display: flex;
+body {
+	height: 600px;
+	background-position: center; /* Center the image */
+	background-repeat: no-repeat; /* Do not repeat the image */
+	background-size: cover;
+	display: flex;
 }
 
-h1{
-    display: flex;
-    justify-content: center;
-    flex-direction: row; 
-    margin: 0px 0px 0 450px; 
+h1 {
+	display: flex;
+	justify-content: center;
+	flex-direction: row;
+	margin: 0px 0px 0 450px;
 }
 
-form{
-    background-color: white; 
-    width: 50%;  
-    height: 80%; 
-    padding:10px;
-    margin: 75px 0 0px 500px;  
-    box-shadow: 10px 5px 5px rgb(160, 154, 154);
-  }
-  .username{
-      margin: 15px 75px 0 75px; 
-  }
+form {
+	background-color: white;
+	width: 50%;
+	height: 80%;
+	padding: 10px;
+	margin: 76px -155px 0px 440px;
+	box-shadow: 10px 5px 5px rgb(160, 154, 154);
+}
 
-  .pass{
-      margin: 10px 75px 0 75px; 
-  }
-  .submit{
-      margin: 10px 75px 0 75px; 
+.username {
+	margin: 15px 75px 0 75px;
+}
 
-  }
-input[type=password],input[type=text],input[type=email]{
-    width: 100%;
-    padding: 20px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    background-color:rgb(228, 235, 236);
-    font-size: 20px;
-    text-align: center;
-    color: lightgray;
+.pass {
+	margin: 10px 75px 0 75px;
+}
+
+.submit {
+	margin: 10px 75px 0 75px;
+}
+
+input[type=password], input[type=text], input[type=email] {
+	width: 100%;
+	padding: 20px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+	background-color: rgb(228, 235, 236);
+	font-size: 20px;
+	text-align: center;
+	color: lightgray;
 }
 
 input[type=submit] {
-    width: 100%;
-    background-color:rgb(106, 192, 226);
-    color: white;
-    padding: 20px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 20px;
-    text-align: center;
+	width: 100%;
+	background-color: rgb(106, 192, 226);
+	color: white;
+	padding: 20px 20px;
+	margin: 8px 0 0 0;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 20px;
+	text-align: center;
 }
 
-a{
-    color: white;
-    font-size: large;
-    background-color: lightgray;
+a {
+	color: white;
+	font-size: large;
+	background-color: lightgray;
 }

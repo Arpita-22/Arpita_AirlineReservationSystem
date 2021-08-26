@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 body{
-	background-color: lightyellow;
+	background: linear-gradient(to right, #696969 0%, #C0C0C0 100%);
 }
 	
 table{
@@ -10,7 +10,7 @@ table{
   font-size: 0.9em;
   min-width: 400px;
   text-align: center;
-    vertical-align: middle;
+   vertical-align: middle;
   
 }
 

@@ -3,6 +3,9 @@ package org.arpita.airlinereservationsystem.sevices.impl;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
+
+import org.arpita.airlinereservationsystem.exception.ReservationException;
 import org.arpita.airlinereservationsystem.models.User;
 import org.arpita.airlinereservationsystem.repositories.UserRepository;
 import org.arpita.airlinereservationsystem.services.UserService;
@@ -30,7 +33,7 @@ public class UserServiceImpl implements UserService {
 		if (optuser.isPresent()) {
 			return optuser.get();
 		}
-		return null;
+		throw new EntityNotFoundException();
 	}
 
 	@Override
@@ -62,10 +65,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void removeUser(User user) {
 		userRepository.delete(user);
-		
-	}
 
-	
-	
+	}
 
 }

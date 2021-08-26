@@ -9,6 +9,8 @@ table {
   border: 1px solid black;
   text-align: center;
     vertical-align: middle;
+ margin-left: auto;
+  margin-right: auto;
 }
 
 th, td {
@@ -70,3 +72,4 @@ tbody tr:nth-child(odd) th {
 	 background-color: #eee;
 	
 }
+

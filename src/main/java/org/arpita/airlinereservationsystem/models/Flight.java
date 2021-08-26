@@ -8,6 +8,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -19,6 +21,7 @@ public class Flight {
 
 	@Id
 	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int fId;
 
 	private String source;
@@ -158,6 +161,8 @@ public class Flight {
 		this.price = price;
 	}
 
+	
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(arrivalDate, arrivalTime, departureDate, departureTime, destination, fId, flightNumber,
@@ -189,6 +194,8 @@ public class Flight {
 				+ arrivalTime + ", price=" + price + ", flightNumber=" + flightNumber + ", passengers=" + passengers
 				+ "]";
 	}
+
+	
 
 	
 }

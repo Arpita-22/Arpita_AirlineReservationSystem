@@ -1,18 +1,23 @@
 
-var paxIndex = 1;
+var paxIndex = 2;
 
 function addPassenger() {
 	let div = document.getElementById("passengerDetails");
-	var text = document.createElement('div');
+	let text = document.createElement('div');
     text.innerHTML = getFormContent();
     div.appendChild(text);
 	
-	paxIndex++;
-	
+	paxIndex++;	
+};
+
+function removePassenger(index) {
+	let element = document.getElementById("fieldSet" + index);
+    element.parentNode.removeChild(element);
 };
 
 function getFormContent(){
-	return "<fieldset>"+"<legend>Passenger#" + paxIndex +"</legend>" 
+	return "<fieldset id=\"fieldSet" + paxIndex + "\">"+"<legend stye=\"display:inline-block;\"><h3>Passenger details</h3></legend>"
+			+ 	"<input type=\"button\" id=\"removePax\" value=\"Remove passenger\" onClick= \"removePassenger(" + paxIndex + ")\"/>" 
 			+   "</br><label name=\"passengerList[" + paxIndex + "].firstName\" for=\"firstName\">First Name</label>" 
 			+	"<input name=\"passengerList[" + paxIndex + "].firstName\" id=\"firstName" + paxIndex + "\" type=\"text\" placeholder=\"firstName\"/>"
 			+	"<errors name=\"passengerList[" + paxIndex + "].firstName\" class=\"form-errors\" />"

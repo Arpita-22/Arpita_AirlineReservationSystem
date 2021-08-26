@@ -19,7 +19,8 @@ table {
 }
 
 body {
-	background-color: rgb(200, 230, 240);FO
+	/* background-color: rgb(200, 230, 240); */
+	background: linear-gradient(to right, #696969 0%, #C0C0C0 100%);
 }
 
 .link-button {
@@ -39,22 +40,27 @@ body {
 .link-button:active {
 	color: red;
 }
+
+table {
+	margin-left: auto;
+	margin-right: auto;
+}
 </style>
 </head>
 
 <body>
 	<div>
-		<a href="${pageContext.request.contextPath}/">Home</a>
+		 <%@include file="home_link.html"  %> 
 
 		<br />
 		<table border="1" borderColor="gray" height="80%" width="80%" id="hiddenfield">
-		<caption>List of All Flights</caption>
+		<caption style="text-align:center;color:white;">List of All Flights</caption>
 			<thead>
 				<tr>
 					<th>Origin</th>
 					<th>Destination</th>
-					<th>Departure</th>
-					<th>Arrival</th>
+					<th>Departure Date</th>
+					<th>Arrival Date</th>
 					<th>Flight Number</th>
 					<th>Price</th>
 					<th>Booking</th>

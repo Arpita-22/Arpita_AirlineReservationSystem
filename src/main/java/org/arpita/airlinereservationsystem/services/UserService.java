@@ -2,6 +2,7 @@ package org.arpita.airlinereservationsystem.services;
 
 import java.util.List;
 
+import org.arpita.airlinereservationsystem.exception.ReservationException;
 import org.arpita.airlinereservationsystem.models.User;
 
 public interface UserService {

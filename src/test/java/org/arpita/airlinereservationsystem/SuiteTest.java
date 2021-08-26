@@ -6,9 +6,8 @@ import org.junit.platform.suite.api.SelectClasses;
 import org.junit.runner.RunWith;
 
 @RunWith(JUnitPlatform.class)
-@SelectClasses({FlightIT.class, PassengerIT.class })
+@SelectClasses({FlightIT.class, PassengerIT.class, UserIT.class, BookingIT.class, TicketIT.class })
 @IncludeClassNamePatterns({"^.*IT?$", "^.*Test?$", "^.*Tests?$"})
-//@IncludeClassNamePatterns({"^.*IT?$"})
 public class SuiteTest {
 
 }

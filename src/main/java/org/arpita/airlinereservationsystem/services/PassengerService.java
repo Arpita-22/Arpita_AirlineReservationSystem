@@ -17,6 +17,8 @@ public interface PassengerService {
 	Passenger save(Passenger passenger);
 	
 	void removePassenger(Passenger passenger);
+	
+	void removePassengers(List<Passenger> passengers);
 
 //	Passenger findByEmail(String email);
 

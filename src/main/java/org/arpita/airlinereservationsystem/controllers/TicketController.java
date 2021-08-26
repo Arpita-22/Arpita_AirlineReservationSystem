@@ -47,7 +47,7 @@ public class TicketController {
 		ticketService.save(ticket);
 		model.addAttribute("ticket", ticket);
 		
-		return "ticketPage";
+		return "ticket_page";
 	}
 	
 
