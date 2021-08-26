@@ -47,7 +47,8 @@ label {
 <body>
 	<div>
 		<nav>
-			<a href="${pageContext.request.contextPath}/">Home</a>
+			<a href="${pageContext.request.contextPath}/">Home </a>
+			<a href="./signUp"> Sign Up</a>
 		</nav>
 		<p>${SPRING_SECURITY_LAST_EXCEPTION.message}</p>
 		<h1>Login</h1>
@@ -58,7 +59,6 @@ label {
 			<label for="password">Password</label> <input id="passW" name="password" placeholder="Password" type="password" />
 			<input type="submit" name="submit" value="login" />
 		</form>
-		<br /> <a href="./signUp">Sign Up</a> <br />
 
 
 		<h1 id="loginForm-h1"></h1>

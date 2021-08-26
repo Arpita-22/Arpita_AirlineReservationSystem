@@ -29,6 +29,7 @@ public class PassengerController {
 	}
 
 
+	//method to show Passenger Info
 	@GetMapping("/passenger_info")
 	public String showPassengerPage(Model model) {
 		
@@ -40,6 +41,8 @@ public class PassengerController {
 
 		return "passenger_info";
 	}
+	
+	//method for creating Passenger
 
 	@PostMapping("/createPassenger")
 	public String createPassenger(@Valid @ModelAttribute("passengerList") PassengerList passengerList,
@@ -63,6 +66,7 @@ public class PassengerController {
 	}
 	
 
+	//Method for removing a Passenger
 	@GetMapping("/passenger/remove/{passengerId}")
 	public String removePassengerById(@PathVariable("passengerId") int pid, HttpSession session, Model model) {
 
@@ -88,7 +92,9 @@ public class PassengerController {
 		return "passenger_list";
 
 	}
-
+	
+	
+    //getting the id of the passenger to be updated and setting it in the session
 	@GetMapping("/passenger/{passengerId}")
 	public String updatePassengerById(@PathVariable("passengerId") int passengerId, HttpSession session, Model model) {
 
@@ -99,6 +105,7 @@ public class PassengerController {
 	}
 	
 
+	//Method for Updating a Passenger
 	@PostMapping("/passenger/updatePassenger")
 	public String updatePassenger(@Valid @ModelAttribute("passenger") Passenger passenger, Model model,
 			BindingResult errors, HttpSession session) {

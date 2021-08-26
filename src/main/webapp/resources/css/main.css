@@ -54,12 +54,12 @@ img{
     display: flex;
 }
 
-@keyFrames slider{
+/* @keyFrames slider{
 	0%{background-image: url("images/Destination.jpg");}
 	35%{ background-image: url("images/source.jpg");}
 	75%{background-image: url("images/jonathan-bean-Ejpx_sdKEKo-unsplash.jpg");}
 	
-}
+} */
 
 h3::first-letter {
     color: #ff0000;

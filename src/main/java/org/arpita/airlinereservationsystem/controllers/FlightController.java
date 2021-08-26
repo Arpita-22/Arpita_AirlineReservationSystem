@@ -25,7 +25,9 @@ public class FlightController {
 	public FlightController(FlightService flightService) {
 		this.flightService = flightService;
 	}
+	
 
+	//Method which sorts the flight by the given parameters
 	@PostMapping("/search")
 	public String showSearchPage(Model model, @RequestParam("stateFrom") String stateFrom,
 			@RequestParam("stateTo") String stateTo, @RequestParam("depart") String depart,
@@ -38,7 +40,9 @@ public class FlightController {
 			return "error_page";
 		}
 	}
+	
 
+	//Method to get the flight id from the jsp page and setting that to session for use in application
 	@GetMapping("/flights/{flightId}")
 	public String bookFlightById(@PathVariable("flightId") int fid, HttpSession session) {
 		
@@ -48,6 +52,7 @@ public class FlightController {
 	}
 	
 	
+	//Method to show all flights available from the database
 	@GetMapping("/allFlights")
 	public String showAllFlights(Model model) {
 		

@@ -61,7 +61,8 @@ input[type=submit] {
 }
 
 a {
-	color: white;
+	color: black;
 	font-size: large;
 	background-color: lightgray;
+	margin: 0 0 0 70px;
 }

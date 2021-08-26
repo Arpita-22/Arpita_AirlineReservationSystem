@@ -73,16 +73,10 @@ footer {
 	margin: 700px 0 0 0;
 }
 
-label {
+label{
   font-size: 20px;
+  margin-left: 40px;
 }
-/* 
- form{
-	background-image: url("images/california.jpg");
-	height: 20%;
-	width: 20%;
-	
-}  */
 
 
 </style>
@@ -98,7 +92,7 @@ label {
 				<jsp:include page="navbar.jsp" />
 
 
-				<h3 style="color:dodgerblue;">Search Flights</h3>
+				<h3 style="color:dodgerblue; margin-left: 40px;">Search Flights</h3>
 
 				<form action="${pageContext.request.contextPath}/search"
 					method="post">
@@ -126,9 +120,9 @@ label {
 						onSubmit="${pageContext.request.contextPath}/search" />
 
 				</form>
-				<img src="images/california.jpg" style="height: 20%; width:20%; float:right; margin-top: 200px">
+				<!-- <img src="images/california.jpg" style="height: 20%; width:20%; float:right; margin-top: 200px">
 				<img src="images/beach.jpg" style="height: 20%; width:20%; float:left; margin-top: 200px;">
-				<img src="images/northernLights.jpg" style="height: 20%; width:20%; float:right; margin: -100px -300px 0 500px; ">
+				<img src="images/northernLights.jpg" style="height: 20%; width:20%; float:right; margin: -100px -300px 0 500px; "> -->
 			</div>
 		</div>
 	</div>

@@ -45,6 +45,10 @@ table {
 	margin-left: auto;
 	margin-right: auto;
 }
+
+a{
+margin-left: 40px;
+}
 </style>
 </head>
 
@@ -59,8 +63,8 @@ table {
 				<tr>
 					<th>Origin</th>
 					<th>Destination</th>
-					<th>Departure Date</th>
-					<th>Arrival Date</th>
+					<th>Departure Time</th>
+					<th>Arrival Time</th>
 					<th>Flight Number</th>
 					<th>Price</th>
 					<th>Booking</th>
