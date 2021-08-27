@@ -31,14 +31,14 @@ public class UserController {
 		this.passwordEncoder = passwordEncoder;
 	}
 
-	//Route to the signUp page
+
 	@GetMapping("/signUp")
 	public String showSignUpPage(Model model) {
 		model.addAttribute("user", new User());
 		return "sign_up";
 	}
 	
-	//Checking if the User is in the database and if the User is present error message is printed out otherwise a User is created
+
 
 	@SuppressWarnings("finally")
 	@PostMapping("/createUser")
@@ -65,14 +65,14 @@ public class UserController {
 		}
 	}
 
-	//Which fields are allowed to be entered inside the database
+	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		binder.setAllowedFields("firstName", "lastName", "email", "password", "username");
 
 	}
 
-	//Route to the login page
+	
 	@GetMapping("/login")
 	public String showLoginPage(Model model) {
 		return "login";

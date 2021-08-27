@@ -28,7 +28,7 @@ public class HomeController {
 		return "passenger_list";
 	}
 	
-  //Method which shows the home page and gets the user details from spring security and user name is retrieved and shown
+  
 	@GetMapping("/")
 	public String showHomePage(Model model) {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
