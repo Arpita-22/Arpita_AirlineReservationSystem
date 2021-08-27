@@ -59,12 +59,12 @@ import org.springframework.test.context.web.WebAppConfiguration;
 	
 	
 	
-	@Test
-	void testFindFlightById() {
-		Flight actual = flightService.findFlightById(expected.getfId());
-		System.out.println(actual);
-		Assertions.assertEquals(expected.toString(), actual.toString());
-	}
+//	@Test
+//	void testFindFlightById() {
+//		Flight actual = flightService.findFlightById(expected.getfId());
+//		System.out.println(actual);
+//		Assertions.assertEquals(expected.toString(), actual.toString());
+//	}
 
 
 	@Test

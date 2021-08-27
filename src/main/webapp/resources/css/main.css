@@ -47,19 +47,13 @@ a{
 img{
     height: 100%;
     width: 100%;
-    animation: slider 9s infinite linear;
 }
 
 .container-body{
     display: flex;
 }
 
-/* @keyFrames slider{
-	0%{background-image: url("images/Destination.jpg");}
-	35%{ background-image: url("images/source.jpg");}
-	75%{background-image: url("images/jonathan-bean-Ejpx_sdKEKo-unsplash.jpg");}
-	
-} */
+
 
 h3::first-letter {
     color: #ff0000;
@@ -71,16 +65,55 @@ a:hover {
 }
 
 input[type=submit]{
-    background-color: red;
+    background-color: dodgerblue;
     color: white;
     height: 20px;
         
 }
 
-
 label{
-	color: black;
+	color: dodgerblue;
+}
+/* images fading in and out*/
+/* #navi img {
+    position:absolute;
+    top:0;
+    -webkit-animation-name: fade;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-duration: 6s;
+    animation-name: fade;
+    animation-iteration-count: infinite;
+    animation-duration: 6s;
 }
 
+@-webkit-keyframes fade {
+    0% {opacity: 0;}
+    20% {opacity: 1;}
+    33% {opacity: 1;}
+    53% {opacity: 0;}
+    100% {opacity: 0;}
+}
+@keyframes fade {
+    0% {opacity: 0;}
+    20% {opacity: 1;}
+    33% {opacity: 1;}
+    53% {opacity: 0;}
+    100% {opacity: 0;}
+}
 
+.img-airplane{
+    background-color: lightblue;
+}
+.img-northern-lights {
+    -webkit-animation-delay: -10s;
+    background-color: yellow;
+}
+.img-california {
+    -webkit-animation-delay: -2s;
+    background-color: lightgreen;
+} 
+ */
+
+
+ 
 

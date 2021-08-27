@@ -45,8 +45,9 @@ private User expected;
 		u.setEmail("john@email.com");
 		u.setPassword("john1234");
 		expected = userService.createUser(u);
+		
+		
 	}
-	
 	
 	
 	@Test

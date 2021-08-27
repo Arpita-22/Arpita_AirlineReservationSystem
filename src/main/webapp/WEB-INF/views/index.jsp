@@ -85,7 +85,9 @@ label{
 	<div class="main-container">
 		<div class="container-body">
 			<div id="navi">
-				<img src="images/AirPlane.jpg">
+			    <!-- <img src="images/northernLights.jpg" class="img-northern-lights" > -->
+				<img src="images/AirPlane.jpg" class="img-airplane">
+				<!-- <img src="images/california.jpg" class="img-california"> -->
 			</div>
 			<div id="search">
 				<h2 id="main-container-item">Fly with us</h2>
@@ -97,13 +99,13 @@ label{
 				<form action="${pageContext.request.contextPath}/search"
 					method="post">
 					<!-- For Future Use -->
-					<label for="state" style="color: black;">Leaving From</label> <select
+					<label for="state" style="color:dodgerblue;">Leaving From</label> <select
 						class="select-state" name="stateFrom" id="state">
 						<option value="seattle">Seattle</option>
 						<option value="Denver">Denver</option>
 						<option value="Boston">Boston</option>
 						<option value="California">California</option>
-					</select> <label for="state" style="color: black;">Going To</label> <select
+					</select> <label for="state" style="color: dodgerblue;">Going To</label> <select
 						class="select-state" name="stateTo" id="state">
 						<option value="seattle">Seattle</option>
 						<option value="Denver">Denver</option>
@@ -111,18 +113,15 @@ label{
 						<option value="boston">Boston</option>
 					</select> 
 					<br /><br />
-					<label for="depart" style="color: black;">Departing</label> <input
+					<label for="depart" style="color: dodgerblue;">Departing</label> <input
 						type="date" name="depart" min="2021-08-26" max="2021-08-26" /> <label
-						for="returning" style="color: black;">Returning</label> <input
+						for="returning" style="color: dodgerblue;">Returning</label> <input
 						type="date" name="returning" min="2021-08-26" max="2021-08-26" />
 						<br /><br />
 					<input type="submit" name="submit" value="search"
 						onSubmit="${pageContext.request.contextPath}/search" />
 
 				</form>
-				<!-- <img src="images/california.jpg" style="height: 20%; width:20%; float:right; margin-top: 200px">
-				<img src="images/beach.jpg" style="height: 20%; width:20%; float:left; margin-top: 200px;">
-				<img src="images/northernLights.jpg" style="height: 20%; width:20%; float:right; margin: -100px -300px 0 500px; "> -->
 			</div>
 		</div>
 	</div>
