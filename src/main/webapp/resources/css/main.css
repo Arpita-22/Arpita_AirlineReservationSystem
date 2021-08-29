@@ -74,8 +74,32 @@ input[type=submit]{
 label{
 	color: dodgerblue;
 }
-/* images fading in and out*/
-/* #navi img {
+
+.depart{
+	margin: 0 0 0 30px;	
+}
+
+.return{
+	margin: 0 0 0 52px;
+	
+}
+
+#state-leaving{
+	margin: 0 0 0 0;
+	
+}
+
+#state-going{
+	margin: 0 0 0 60px;
+	
+}
+
+#label-going-to {
+	margin: 0 0 0 40px;
+}
+
+ /* images fading in and out*/
+ #navi img {
     position:absolute;
     top:0;
     -webkit-animation-name: fade;
@@ -111,8 +135,8 @@ label{
 .img-california {
     -webkit-animation-delay: -2s;
     background-color: lightgreen;
-} 
- */
+}  
+ 
 
 
  

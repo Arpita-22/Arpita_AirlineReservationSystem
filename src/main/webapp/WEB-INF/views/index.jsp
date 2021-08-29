@@ -27,7 +27,7 @@ input[type=submit] {
 
 select {
 	background: white;
-	width: 150px;
+	width: 200px;
 	padding: 2px;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 15px;
@@ -45,7 +45,7 @@ select {
 input[type=date] {
 	width: 200px;
 	line-height: 2;
-	margin-top: -200px;
+	margin-top: -200px; 
 }
 
 .container-body {
@@ -85,9 +85,9 @@ label{
 	<div class="main-container">
 		<div class="container-body">
 			<div id="navi">
-			    <!-- <img src="images/northernLights.jpg" class="img-northern-lights" > -->
+			     <img src="images/northernLights.jpg" class="img-northern-lights" >
 				<img src="images/AirPlane.jpg" class="img-airplane">
-				<!-- <img src="images/california.jpg" class="img-california"> -->
+				<img src="images/california.jpg" class="img-california">
 			</div>
 			<div id="search">
 				<h2 id="main-container-item">Fly with us</h2>
@@ -100,13 +100,13 @@ label{
 					method="post">
 					<!-- For Future Use -->
 					<label for="state" style="color:dodgerblue;">Leaving From</label> <select
-						class="select-state" name="stateFrom" id="state">
+						class="select-state" name="stateFrom" id="state-leaving">
 						<option value="seattle">Seattle</option>
 						<option value="Denver">Denver</option>
 						<option value="Boston">Boston</option>
 						<option value="California">California</option>
-					</select> <label for="state" style="color: dodgerblue;">Going To</label> <select
-						class="select-state" name="stateTo" id="state">
+					</select> <label for="state" style="color: dodgerblue;" id="label-going-to">Going To</label> <select
+						class="select-state" name="stateTo" id="state-going">
 						<option value="seattle">Seattle</option>
 						<option value="Denver">Denver</option>
 						<option value="California">California</option>
@@ -114,9 +114,9 @@ label{
 					</select> 
 					<br /><br />
 					<label for="depart" style="color: dodgerblue;">Departing</label> <input
-						type="date" name="depart" min="2021-08-26" max="2021-08-26" /> <label
+						class="depart" type="date" name="depart" min="2021-08-26" max="2021-08-26" /> <label
 						for="returning" style="color: dodgerblue;">Returning</label> <input
-						type="date" name="returning" min="2021-08-26" max="2021-08-26" />
+						class="return" type="date" name="returning" min="2021-08-26" max="2021-08-26" />
 						<br /><br />
 					<input type="submit" name="submit" value="search"
 						onSubmit="${pageContext.request.contextPath}/search" />

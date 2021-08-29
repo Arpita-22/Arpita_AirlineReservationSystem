@@ -12,7 +12,9 @@
 <style>
 
 body{
-  background: linear-gradient(to right, #696969 0%, #C0C0C0 100%);
+/*   background: linear-gradient(to right, #696969 0%, #C0C0C0 100%); */
+  
+  background-image: url("images/woodenMap.jpg");
 }
 
 table{

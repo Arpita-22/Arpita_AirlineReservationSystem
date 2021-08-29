@@ -7,7 +7,8 @@
 <title>Error Page</title>
 </head>
 <body>
-<h1> OOps Something went wrong!</h1>
+<h1 style="color:red;"> OOps Something went wrong!</h1>
+
 
 </body>
 </html>
