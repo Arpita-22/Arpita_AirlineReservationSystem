@@ -1,5 +1,6 @@
 package org.arpita.airlinereservationsystem.sevices.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
@@ -11,6 +12,9 @@ import org.arpita.airlinereservationsystem.services.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/*
+ * Flight Service implementation class 
+ */
 @Service
 public class FlightServiceImpl implements FlightService {
 
@@ -21,12 +25,6 @@ public class FlightServiceImpl implements FlightService {
 		this.flightRepository = flightRepository;
 	}
 
-//	@Override
-//	public Flight findAllPassengers(int fId) {
-//		return flightRepository.findAllPassengers(fId);
-//	}
-	
-	
 	@Override
 	public Flight save(Flight flight) {
 		return flightRepository.save(flight);
@@ -41,7 +39,6 @@ public class FlightServiceImpl implements FlightService {
 		throw new EntityNotFoundException();
 	}
 
-
 	@Override
 	public Iterable<Flight> getAllFlights() {
 		Iterable<Flight> optFlight = flightRepository.findAll();
@@ -49,10 +46,11 @@ public class FlightServiceImpl implements FlightService {
 	}
 
 	@Override
-	public Iterable<Flight> findBySourceAndDestinationAndArrivalDateAndDepartureDate(String source, String destination,
-			String arrivalDate, String departureDate) throws ReservationException {
-		return flightRepository.findBySourceAndDestinationAndArrivalDateAndDepartureDate(source, destination,
-				arrivalDate, departureDate);
+
+	public Iterable<Flight> findByDepartureCityNameAndArrivalCityNameAndDepartureDate(String departureCityName,
+			String arrivalCityName, String departureDate) throws ReservationException {
+		return flightRepository.findByDepartureCityNameAndArrivalCityNameAndDepartureDate(departureCityName,
+				arrivalCityName, departureDate);
 	}
 
 	@Override
@@ -63,10 +61,18 @@ public class FlightServiceImpl implements FlightService {
 	@Override
 	public void removeFlight(Flight flight) {
 		flightRepository.delete(flight);
-		
+
 	}
 
-	
-	
+	@Override
+	public List<String> findSource(String source) throws ReservationException {
+		return flightRepository.findSource(source);
+
+	}
+
+	@Override
+	public List<String> findDestination(String destination) throws ReservationException {
+		return flightRepository.findDestination(destination);
+	}
 
 }

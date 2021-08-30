@@ -1,7 +1,8 @@
 package org.arpita.airlinereservationsystem;
 
+import static org.junit.Assert.assertTrue;
+
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.arpita.airlinereservationsystem.config.WebAppConfig;
@@ -23,42 +24,37 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @ContextConfiguration(classes = { WebAppConfig.class })
 @WebAppConfiguration("webapp")
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
- class FlightIT {
+class FlightIT {
 
 	private FlightService flightService;
-	
+
 	private Flight expected;
-	
-	private List<Flight>flights;
-	
-	
+
+	private List<Flight> flights;
 
 	@Autowired
 	public FlightIT(FlightService flightService) {
 		this.flightService = flightService;
 		this.flights = new ArrayList<>();
-		
+
 	}
-	
+
 	@BeforeAll
 	void setup() {
 
-		 expected = new Flight("Georgia", "New York", "5:00 am", "8:00 am", 123, 
-				"2021-08-22", "2021-08-23", 50);
-		 
-		 Flight flight2 = new Flight("Georgia", "New York", "8:00 am", "11:00 am", 321, 
-					"2021-08-22", "2021-08-23", 50);
+		expected = new Flight("CCU", "DXB", "5:00 am", "8:00 am", 123, "2021-08-22", "2021-08-23", 50, "Kolkata",
+				"Dubai");
 
-		
+		Flight flight2 = new Flight("CCU", "DXB", "8:00 am", "11:00 am", 321, "2021-08-22", "2021-08-23", 50, "Kolkata",
+				"Dubai");
+
 		flight2 = flightService.save(flight2);
 		expected = flightService.save(expected);
-		
+
 		flights.add(expected);
 		flights.add(flight2);
 	}
-	
-	
-	
+
 //	@Test
 //	void testFindFlightById() {
 //		Flight actual = flightService.findFlightById(expected.getfId());
@@ -66,71 +62,64 @@ import org.springframework.test.context.web.WebAppConfiguration;
 //		Assertions.assertEquals(expected.toString(), actual.toString());
 //	}
 
-
 	@Test
 	void testGetAllFlights() {
 		Iterable<Flight> flightIterable = flightService.getAllFlights();
 		List<Flight> flightList = new ArrayList<>();
-		
-		for(Flight flight: flightIterable) {
+
+		for (Flight flight : flightIterable) {
 			flightList.add(flight);
 		}
-		
+
 		Assertions.assertEquals(expected.toString(), flightList.get(flightList.size() - 1).toString());
 
-		//if no data inside the tables then this test would pass
+		// if no data inside the tables then this test would pass
 //		Assertions.assertEquals(flights.size(),flightList.size());
-		
+
 	}
-	
-	
-	
+
 	@Test
-	void testFindBySourceAndDestination() {
+	void testFindSource() throws ReservationException {
+
+		List<String> actual = flightService.findSource("kol");
+		Assertions.assertNotNull(actual);
+		assertTrue(actual.contains(expected.getDepartureCityName()));
+	}
+
+	@Test
+	void testFindDestination() throws ReservationException {
+		List<String> actual = flightService.findDestination("dub");
+		Assertions.assertNotNull(actual);
+		assertTrue(actual.contains(expected.getArrivalCityName()));
+	}
+
+	@Test
+	void testFindByDepartureCityNameAndArrivalCityNameAndDepartureDate() {
 		Iterable<Flight> flightSelected;
 		try {
-			flightSelected = flightService.findBySourceAndDestination("Georgia", "New York");
+			flightSelected = flightService.findByDepartureCityNameAndArrivalCityNameAndDepartureDate("Kolkata", "Dubai",
+					"2021-08-22");
 			List<Flight> flightList = new ArrayList<>();
-			
-			for(Flight flight: flightSelected) {
+
+			for (Flight flight : flightSelected) {
 				flightList.add(flight);
 			}
+
 //			Assertions.assertEquals(expected.toString(), flights.get(0).toString());
-			Assertions.assertEquals(flights.size(),flightList.size());
+			Assertions.assertEquals(flights.size(), flightList.size());
+//			Assertions.assertTrue(flightList.contains(expected));
 		} catch (ReservationException e) {
 			e.getMessage();
 		}
-		
-		
+
 	}
-	
-	@Test
-	void testfindBySourceAndDestinationAndArrivalDateAndDepartureDate() {
-		Iterable<Flight> flightSelected;
-		try {
-			flightSelected = flightService.findBySourceAndDestinationAndArrivalDateAndDepartureDate("Georgia", "New York", "2021-08-23","2021-08-22");
-			List<Flight> flightList = new ArrayList<>();
-			
-			for(Flight flight: flightSelected) {
-				flightList.add(flight);
-			}
-//			Assertions.assertEquals(expected.toString(), flights.get(0).toString());
-			Assertions.assertEquals(flights.size(),flightList.size());
-		} catch (ReservationException e) {
-			e.getMessage();
-		}
-		
-		
-	}
-	
-	
+
 	@AfterAll
 	void clearSetup() {
-		for(Flight flight: flights) {
+		for (Flight flight : flights) {
 			flightService.removeFlight(flight);
-			
+
 		}
 	}
-	
 
 }

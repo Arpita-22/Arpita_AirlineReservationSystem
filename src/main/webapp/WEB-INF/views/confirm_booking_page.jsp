@@ -9,21 +9,33 @@
 <meta charset="UTF-8">
 <title>Confirm Booking Page</title>
 <link rel="stylesheet" type="text/css" href="css/search.css">
+<link rel="stylesheet" type="text/css" href="css/passengerList.css">
 </head>
 <style>
 body {
-	background: linear-gradient(to right, #696969 0%, #C0C0C0 100%);
+	background-image: url("images/globe.jpg");
+	background-size: 1500px 1000px;
+	background-repeat: no-repeat;
+	
 }
 
 table {
 	margin-left: auto;
 	margin-right: auto;
 }
-a{
-    color: brown; 
-    text-decoration: none;
-    /* background-color: red;  */  
+
+table thead th{
+ background: linear-gradient(to right, #704214 0%, #703642 100%);
+
 }
+
+.button{
+ color: brown;
+}
+
+ h1, h2, h3{
+ color: #3d0c02;
+} 
 </style>
 <body>
 	<h1 style="text-align: center">Your Booking is confirmed!</h1>
@@ -31,15 +43,15 @@ a{
 	<%
 	Booking booking = (Booking) request.getAttribute("booking");
 	%>	
-	<h3 style="text-align: center">
+	<h3 style="text-align: center; color: beige;">
 		Your Booking Id is
 		<%=booking.getbId()%></h3>
 
-	<%@include file="home_link.html"%> <a
-		href="${pageContext.request.contextPath}/ticket/<%= booking.getbId() %>">Generate
-		Ticket |</a>
+	<%@include file="home_link.html"%> <br /> <a
+		class="button" href="${pageContext.request.contextPath}/ticket/<%= booking.getbId() %>">Generate
+		Ticket </a>
 	<a
-		href="${pageContext.request.contextPath}/removeBooking/<%= booking.getbId() %>">Delete
+		class="button" href="${pageContext.request.contextPath}/removeBooking/<%= booking.getbId() %>">Delete
 		Booking</a>
 
 	<h2 style="text-align: center">Booking Details</h2>

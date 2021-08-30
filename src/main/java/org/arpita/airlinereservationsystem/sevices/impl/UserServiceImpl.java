@@ -5,13 +5,15 @@ import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
 
-import org.arpita.airlinereservationsystem.exception.ReservationException;
 import org.arpita.airlinereservationsystem.models.User;
 import org.arpita.airlinereservationsystem.repositories.UserRepository;
 import org.arpita.airlinereservationsystem.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/*
+ * User Service implementation class 
+ */
 @Service
 public class UserServiceImpl implements UserService {
 

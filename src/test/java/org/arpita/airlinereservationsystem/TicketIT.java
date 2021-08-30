@@ -1,13 +1,10 @@
 package org.arpita.airlinereservationsystem;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.arpita.airlinereservationsystem.config.WebAppConfig;
-import org.arpita.airlinereservationsystem.exception.ReservationException;
 import org.arpita.airlinereservationsystem.models.Booking;
 import org.arpita.airlinereservationsystem.models.Flight;
 import org.arpita.airlinereservationsystem.models.Passenger;
@@ -24,8 +21,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -50,7 +45,7 @@ class TicketIT {
 	private Ticket expected;
 
 	private List<Passenger> passengers;
-	
+
 //	private List<Ticket> tickets;
 
 	@Autowired
@@ -66,8 +61,6 @@ class TicketIT {
 
 	@BeforeAll
 	void setup() {
-
-		
 
 		User u = new User();
 		u.setFirstName("John");
@@ -87,7 +80,7 @@ class TicketIT {
 		passenger.setPersonalId("personalId");
 
 		passengers.add(passenger);
-		
+
 		Flight f = new Flight();
 		f.setFlightNumber(123);
 		f.setSource("Georgia");
@@ -113,15 +106,12 @@ class TicketIT {
 
 	}
 
-
-
 	@Test
 	void testFindById() {
 		Ticket actual = ticketService.findById(expected.gettId());
 		Assertions.assertEquals(expected.toString(), actual.toString());
 	}
-	
-	
+
 //	@ParameterizedTest
 //	@ValueSource(strings = {"John"})
 //	void testFindByUser_username(String username) {
@@ -138,13 +128,13 @@ class TicketIT {
 //				
 //		
 //	}
-	
+
 	@AfterAll
-	void clearSetup() {	
-		
+	void clearSetup() {
+
 		ticketService.removeTicket(expected);
 		bookingService.removeBooking(booking);
-		userService.removeUser(user);		
+		userService.removeUser(user);
 		flightService.removeFlight(flight);
 
 	}

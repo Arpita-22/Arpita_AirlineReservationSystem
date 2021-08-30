@@ -6,6 +6,18 @@ This website has a signup and login feature for user security implemented with s
 
 The search functionality on the search page allows the user to search the available flights.
 
+To run the application right click on the application then run on server, then next, select 'Tomcat' as server remove the other projects and click only on that project then click finish.
+
+`Technologies Used`
+
+* Spring MVC spring data jpa
+* HTML, CSS, JavaScript
+* Maven
+
+
+
+` User Stories`
+
 To use the full functionality of the application, the user has to `login` first. If the User has not logged in then clicking on the signUp link in the `login` page  would take the user to the `sign up` page and after signing Up the User is taken back to the login page and after logging in they can access the main page.
 
 	
@@ -16,12 +28,12 @@ User can view all available flights using the `All available Flights` link.
 
 User can view their booking history by clicking on `View Booking` link.
 
-To book a flight, User has to select the Source and destination and also the dates for arrival and departure of flights and then click on the search button which takes them to a `search` page with the list of available flights along with the times they are available and price.
+To book a flight, User has to select the Source and destination and also the date for departure of flights and then click on the search button which takes them to a `search` page with the list of available flights along with the times they are available and price.
 
 User can now choose to book a flight from the said list and on clicking the link `book flight` it takes them to a separate page `passenger_info` page, where the user has to  fill up a form and provide personal details. User can choose to book a flight for one or many passengers and can also book for other passengers. 
 
 
-After confirming the passenger details, User is now take into a separate page where they can view the details of the passenger they have entered and if need be can update the passenger details or remove passenger details by clicking on the respective links.
+After confirming the passenger details, User is now taken to a separate page where they can view the details of the passenger they have entered and if need be can update the passenger details or remove passenger details by clicking on the respective links.
 
 Clicking on the update passenger link takes them to a similar form like `passenger_info` but with already their details and they can update any single field and upon updating it takes them back to the passenger list.
 

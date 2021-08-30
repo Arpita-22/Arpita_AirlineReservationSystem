@@ -12,9 +12,14 @@
 <link rel="stylesheet" type="text/css" href="css/passengerInfo.css"> 
 </head>
 <style>
+
 body{
-  background: linear-gradient(to right, #696969 0%, #C0C0C0 100%);
+	
+	background-image: url("${pageContext.request.contextPath}/images/nasaMap.jpg");
+	 background-size: 1500px 1000px;
+	background-repeat: no-repeat; 
 }
+
 passengerUpdateForm {
 	width:200px;
     padding:20px;
@@ -93,9 +98,16 @@ fieldset{
 	font-weight: bolder;
 	margin: 0 0 0 450px;
 }
+
+input[type=submit]{
+    margin : 0 0 30px 0 ;	
+	height: 80%;
+	width: 20%;
+	border-color: brown;
+}
 </style>
 <body>	
-	<h1 style="text-align:center">Update Passenger Info</h1>
+	<h1 style="text-align:center;color:white;">Update Passenger Info</h1>
 
 
 	<form:form class="passengerUpdateForm" action="updatePassenger"

@@ -1,18 +1,18 @@
 package org.arpita.airlinereservationsystem.sevices.impl;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
 
-import org.arpita.airlinereservationsystem.exception.ReservationException;
-import org.arpita.airlinereservationsystem.models.Booking;
 import org.arpita.airlinereservationsystem.models.Ticket;
 import org.arpita.airlinereservationsystem.repositories.TicketRepository;
 import org.arpita.airlinereservationsystem.services.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/*
+ * Ticket Service implementation class 
+ */
 @Service
 public class TicketServiceImpl implements TicketService {
 
@@ -41,7 +41,7 @@ public class TicketServiceImpl implements TicketService {
 	@Override
 	public void removeTicket(Ticket ticket) {
 		ticketRepository.delete(ticket);
-		
+
 	}
 
 //	@Override
@@ -49,8 +49,5 @@ public class TicketServiceImpl implements TicketService {
 //		return ticketRepository.findByUser_username(username);
 //	}
 //	
-	
-	
-	
 
 }

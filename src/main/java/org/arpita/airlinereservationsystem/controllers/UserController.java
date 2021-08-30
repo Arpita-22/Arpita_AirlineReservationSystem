@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+/*
+ * Controller class for User
+ */
 @Controller
 public class UserController {
 
@@ -31,15 +34,27 @@ public class UserController {
 		this.passwordEncoder = passwordEncoder;
 	}
 
-
+	/**
+	 * Method to sign up users
+	 * 
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/signUp")
 	public String showSignUpPage(Model model) {
 		model.addAttribute("user", new User());
 		return "sign_up";
 	}
-	
 
-
+	/**
+	 * Method to create user
+	 * 
+	 * @param user
+	 * @param errors
+	 * @param error
+	 * @param model
+	 * @return
+	 */
 	@SuppressWarnings("finally")
 	@PostMapping("/createUser")
 	public String createUser(@Valid @ModelAttribute("user") User user, BindingResult errors, Errors error,
@@ -65,14 +80,24 @@ public class UserController {
 		}
 	}
 
-	
+	/**
+	 * Method to allow fields - "firstName", "lastName", "email", "password",
+	 * "username" to be entered to the database
+	 * 
+	 * @param binder
+	 */
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		binder.setAllowedFields("firstName", "lastName", "email", "password", "username");
 
 	}
 
-	
+	/**
+	 * Method to show login page
+	 * 
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/login")
 	public String showLoginPage(Model model) {
 		return "login";

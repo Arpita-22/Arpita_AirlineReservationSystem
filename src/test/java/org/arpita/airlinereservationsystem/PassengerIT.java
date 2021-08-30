@@ -48,14 +48,13 @@ class PassengerIT {
 
 	}
 
-
 	@Test
 	void testFindPassengerById() {
 		Passenger actual = passengerService.findPassengerById(expected.getpId());
 		assertEquals(expected, actual);
 
 	}
-	
+
 	@AfterAll
 	void clearSetup() {
 		passengerService.removePassenger(expected);

@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/*
+ * Class for list of passengers
+ */
 public class PassengerList {
 
 	private List<Passenger> passengerList = new ArrayList<>();

@@ -14,7 +14,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
+/*
+ * Entity class for Flight
+ */
 @Entity
 @Table(name = "flights")
 public class Flight {
@@ -26,20 +28,22 @@ public class Flight {
 
 	private String source;
 	private String destination;
-	
 
 	private String departureDate;
-	
+
 	private String arrivalDate;
-    
-    private String departureTime;
-    
-    private String arrivalTime;
-    
-    private float price;
-   
+
+	private String departureTime;
+
+	private String arrivalTime;
+
+	private float price;
+
 	private int flightNumber;
-	
+
+	private String departureCityName;
+
+	private String arrivalCityName;
 
 	@OneToMany(targetEntity = Passenger.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Passenger> passengers;
@@ -49,8 +53,8 @@ public class Flight {
 
 	}
 
-	public Flight(String source, String destination, String departureTime, String arrivalTime, int flightNumber, 
-			String departureDate, String arrivalDate, float price) {
+	public Flight(String source, String destination, String departureTime, String arrivalTime, int flightNumber,
+			String departureDate, String arrivalDate, float price, String departureCityName, String arrivalCityName) {
 		this();
 		this.source = source;
 		this.destination = destination;
@@ -60,6 +64,8 @@ public class Flight {
 		this.departureDate = departureDate;
 		this.arrivalDate = arrivalDate;
 		this.price = price;
+		this.arrivalCityName = arrivalCityName;
+		this.departureCityName = departureCityName;
 
 	}
 
@@ -161,12 +167,38 @@ public class Flight {
 		this.price = price;
 	}
 
-	
+	/**
+	 * @return the departureCityName
+	 */
+	public String getDepartureCityName() {
+		return departureCityName;
+	}
+
+	/**
+	 * @param departureCityName the departureCityName to set
+	 */
+	public void setDepartureCityName(String departureCityName) {
+		this.departureCityName = departureCityName;
+	}
+
+	/**
+	 * @return the arrivalCityName
+	 */
+	public String getArrivalCityName() {
+		return arrivalCityName;
+	}
+
+	/**
+	 * @param arrivalCityName the arrivalCityName to set
+	 */
+	public void setArrivalCityName(String arrivalCityName) {
+		this.arrivalCityName = arrivalCityName;
+	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(arrivalDate, arrivalTime, departureDate, departureTime, destination, fId, flightNumber,
-				passengers, price, source);
+		return Objects.hash(arrivalCityName, arrivalDate, arrivalTime, departureCityName, departureDate, departureTime,
+				destination, fId, flightNumber, passengers, price, source);
 	}
 
 	@Override
@@ -178,7 +210,9 @@ public class Flight {
 		if (getClass() != obj.getClass())
 			return false;
 		Flight other = (Flight) obj;
-		return Objects.equals(arrivalDate, other.arrivalDate) && Objects.equals(arrivalTime, other.arrivalTime)
+		return Objects.equals(arrivalCityName, other.arrivalCityName) && Objects.equals(arrivalDate, other.arrivalDate)
+				&& Objects.equals(arrivalTime, other.arrivalTime)
+				&& Objects.equals(departureCityName, other.departureCityName)
 				&& Objects.equals(departureDate, other.departureDate)
 				&& Objects.equals(departureTime, other.departureTime) && Objects.equals(destination, other.destination)
 				&& fId == other.fId && flightNumber == other.flightNumber
@@ -191,11 +225,8 @@ public class Flight {
 	public String toString() {
 		return "Flight [fId=" + fId + ", source=" + source + ", destination=" + destination + ", departureDate="
 				+ departureDate + ", arrivalDate=" + arrivalDate + ", departureTime=" + departureTime + ", arrivalTime="
-				+ arrivalTime + ", price=" + price + ", flightNumber=" + flightNumber + ", passengers=" + passengers
-				+ "]";
+				+ arrivalTime + ", price=" + price + ", flightNumber=" + flightNumber + ", departureCityName="
+				+ departureCityName + ", arrivalCityName=" + arrivalCityName + ", passengers=" + passengers + "]";
 	}
 
-	
-
-	
 }

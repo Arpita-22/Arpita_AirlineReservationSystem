@@ -27,7 +27,7 @@
 				%> 
 			
 								
-                <li><a href="${pageContext.request.contextPath}/signUp"> SignUp</a></li>
+              <%--   <li><a href="${pageContext.request.contextPath}/signUp"> SignUp</a></li> --%>
                 <li><a href="${pageContext.request.contextPath}/allFlights" target="_blank"> All Available Flights </a></li>
                 <li><a href="${pageContext.request.contextPath}/viewUserBooking" target="_blank"> View Booking</a></li> 
                 <li><a href="${pageContext.request.contextPath}/logout"> Logout</a></li>

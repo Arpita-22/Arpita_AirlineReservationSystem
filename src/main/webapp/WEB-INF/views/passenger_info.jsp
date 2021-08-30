@@ -15,6 +15,14 @@
 <!-- <link rel="stylesheet" type="text/css" href="css/style.css">  -->
 <link rel="stylesheet" type="text/css" href="css/passengerInfo.css"> 
 </head>
+<style>
+body{
+  
+ background-image: url("images/nasaMap.jpg");
+  background-size: 1500px 1000px;
+  background-repeat: no-repeat; 
+}
+</style>
 <body>
 	 <%@include file="home_link.html"  %> 
 	 

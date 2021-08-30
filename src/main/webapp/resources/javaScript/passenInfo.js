@@ -1,5 +1,5 @@
 
-var paxIndex = 2;
+var paxIndex = 1;
 
 function addPassenger() {
 	let div = document.getElementById("passengerDetails");

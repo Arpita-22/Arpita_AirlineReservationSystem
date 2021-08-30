@@ -26,6 +26,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+/*
+ * Controller class for Booking
+ */
 @Controller
 public class BookingController {
 
@@ -37,7 +40,7 @@ public class BookingController {
 	private PassengerService passengerService;
 
 	@Autowired
-	public BookingController(BookingService bookingService, FlightService flightService, UserService userService, 
+	public BookingController(BookingService bookingService, FlightService flightService, UserService userService,
 			PassengerService passengerService) {
 		this.bookingService = bookingService;
 		this.flightService = flightService;
@@ -45,6 +48,13 @@ public class BookingController {
 		this.passengerService = passengerService;
 	}
 
+	/**
+	 * Method to create booking and return details
+	 * 
+	 * @param session
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/booking")
 	public String showBookingPage(HttpSession session, Model model) {
 
@@ -81,18 +91,23 @@ public class BookingController {
 			return "error_page";
 		}
 	}
-	
-	
 
+	/**
+	 * Method to show all booking per user
+	 * 
+	 * @param session
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/viewUserBooking")
 	public String showAllUserBooking(HttpSession session, Model model) {
 
 		try {
-			
+
 			Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			UserDetails userDetails = (UserDetails) principal;
 			User user = userService.findByUsername(userDetails.getUsername());
-			
+
 			model.addAttribute("bookings", bookingService.findByUser_username(user.getUsername()));
 
 		} catch (ReservationException e) {
@@ -100,49 +115,45 @@ public class BookingController {
 		}
 		return "user_booking";
 	}
-	
-	
-	
-	
+
+	/**
+	 * Method to remove booking per booking Id
+	 * 
+	 * @param bId
+	 * @param session
+	 * @return
+	 */
 	@GetMapping("/removeBooking/{bookingId}")
 	public String removeBooking(@PathVariable("bookingId") int bId, HttpSession session) {
-		
+
 		Booking booking = bookingService.findBookingById(bId);
-		List<Passenger> passengers = new ArrayList<>();
-		
-		List<Integer> passengerIds = new ArrayList<>();
-		
-		int flightId = (int) session.getAttribute("flightId");
-		Flight flight = flightService.findFlightById(flightId);
-		
-		for(Passenger p : flight.getPassengers()) {
-		for(Passenger passenger: booking.getPassengers()) {
-				if(p.getpId() != passenger.getpId()) {
-					passengers.add(p);
-				}
-				else {
-					passengerIds.add(passenger.getpId());
-				}
-				
-			}
-			
-			
+		List<Integer> passengerIdsInBooking = new ArrayList<>();
+		for (Passenger passenger : booking.getPassengers()) {
+			passengerIdsInBooking.add(passenger.getpId());
+
 		}
-		
-		flight.setPassengers(passengers);
+
+		List<Passenger> passengersRemainInFlight = new ArrayList<>();
+
+		int flightId = booking.getFlight().getfId();
+		Flight flight = flightService.findFlightById(flightId);
+
+		for (Passenger p : flight.getPassengers()) {
+			if (!passengerIdsInBooking.contains(p.getpId())) {
+				passengersRemainInFlight.add(p);
+			}
+		}
+
+		flight.setPassengers(passengersRemainInFlight);
 		flightService.save(flight);
-		
+
 		bookingService.removeBooking(booking);
-		
-		for(Integer id : passengerIds) {
+
+		for (int id : passengerIdsInBooking) {
 			passengerService.removePassengerById(id);
 		}
-			
-				
+
 		return "deleted_booking";
-		
 	}
-	
-	
 
 }

@@ -28,7 +28,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = { WebAppConfig.class })
 @WebAppConfiguration("webapp")
@@ -39,12 +38,12 @@ class BookingIT {
 	private BookingService bookingService;
 	private PassengerService passengerService;
 	private UserService userService;
-	
+
 	private Booking expected;
 	private User user;
 	private Flight flight;
 	private List<Passenger> passengers;
-	
+
 	private List<Booking> bookings;
 
 	@Autowired
@@ -57,11 +56,10 @@ class BookingIT {
 		this.passengerService = passengerService;
 		this.userService = userService;
 	}
-	
-	
+
 	@BeforeAll
 	void setup() {
-		
+
 		User u = new User();
 		u.setFirstName("John");
 		u.setLastName("Doe");
@@ -80,7 +78,7 @@ class BookingIT {
 		passenger.setPersonalId("personalId");
 
 		passengers.add(passenger);
-		
+
 		Flight f = new Flight();
 		f.setFlightNumber(123);
 		f.setSource("Georgia");
@@ -95,25 +93,22 @@ class BookingIT {
 
 		Booking newBooking = new Booking(flight, user, passengers);
 
-		 expected = bookingService.save(newBooking);
-		 
-		 bookings.add(expected);
+		expected = bookingService.save(newBooking);
+
+		bookings.add(expected);
 
 	}
-	
-	
+
 	@Test
-	void testFindBookingById() {		
+	void testFindBookingById() {
 		Booking actual = bookingService.findBookingById(expected.getbId());
 		assertEquals(expected.toString(), actual.toString());
 	}
-	
-	
-	
+
 	@ParameterizedTest
-	@ValueSource(strings = {"John"})
+	@ValueSource(strings = { "John" })
 	void testFindByUser_username(String username) {
-		
+
 		try {
 			List<Booking> actual;
 			actual = bookingService.findByUser_username(username);
@@ -121,20 +116,17 @@ class BookingIT {
 			assertEquals(bookings.size(), actual.size());
 		} catch (ReservationException e) {
 			e.getMessage();
-		}	
-				
-		
+		}
+
 	}
-	
-	
+
 	@AfterAll
-	void clearSetup() {	
-		for(Booking booking: bookings) {
+	void clearSetup() {
+		for (Booking booking : bookings) {
 			bookingService.removeBooking(booking);
 		}
 		flightService.removeFlight(flight);
 		userService.removeUserById(user.getuId());
 	}
-	
 
 }

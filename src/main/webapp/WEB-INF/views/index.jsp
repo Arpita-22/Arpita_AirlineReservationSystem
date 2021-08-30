@@ -10,6 +10,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css" href="css/main.css">
+<script src="javaScript/search.js" defer="defer"></script>
 <title>Airline Reservation System</title>
 </head>
 <style>
@@ -20,12 +21,12 @@
 input[type=submit] {
 	background-color: dodgerblue;
 	color: white;
-	height: 80%;
-	width: 20%;
+	height: 100%;
+	width: 10%;
 	margin: 0 0 0 80px;
 }
 
-select {
+input {
 	background: white;
 	width: 200px;
 	padding: 2px;
@@ -86,7 +87,7 @@ label{
 		<div class="container-body">
 			<div id="navi">
 			     <img src="images/northernLights.jpg" class="img-northern-lights" >
-				<img src="images/AirPlane.jpg" class="img-airplane">
+				<img src="images/airplane2.jpg" class="img-airplane">
 				<img src="images/california.jpg" class="img-california">
 			</div>
 			<div id="search">
@@ -99,25 +100,18 @@ label{
 				<form action="${pageContext.request.contextPath}/search"
 					method="post">
 					<!-- For Future Use -->
-					<label for="state" style="color:dodgerblue;">Leaving From</label> <select
-						class="select-state" name="stateFrom" id="state-leaving">
-						<option value="seattle">Seattle</option>
-						<option value="Denver">Denver</option>
-						<option value="Boston">Boston</option>
-						<option value="California">California</option>
-					</select> <label for="state" style="color: dodgerblue;" id="label-going-to">Going To</label> <select
-						class="select-state" name="stateTo" id="state-going">
-						<option value="seattle">Seattle</option>
-						<option value="Denver">Denver</option>
-						<option value="California">California</option>
-						<option value="boston">Boston</option>
-					</select> 
-					<br /><br />
-					<label for="depart" style="color: dodgerblue;">Departing</label> <input
-						class="depart" type="date" name="depart" min="2021-08-26" max="2021-08-26" /> <label
-						for="returning" style="color: dodgerblue;">Returning</label> <input
-						class="return" type="date" name="returning" min="2021-08-26" max="2021-08-26" />
-						<br /><br />
+					<label for="state" style="color:dodgerblue;">Leaving From</label> 
+					<input type="text" name="stateFrom" id="stateFrom" list="stateFromList" onkeyup="find('searchBySource', 'stateFrom', 'stateFromList')">
+					<datalist id="stateFromList"></datalist>
+
+					<label for="state" style="color: dodgerblue;" id="label-going-to">Going To</label>
+					<input type="text" name="stateTo" id="stateTo" list="stateToList" onkeyup="find('searchByDestination', 'stateTo', 'stateToList')">
+					<datalist id="stateToList"></datalist>
+
+					<label for="depart" style="color: dodgerblue;">Departing</label>
+					<input
+						class="depart" type="date" name="depart" min="2021-08-30" max="2021-09-10" /> 
+					
 					<input type="submit" name="submit" value="search"
 						onSubmit="${pageContext.request.contextPath}/search" />
 

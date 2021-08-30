@@ -12,6 +12,9 @@ import org.arpita.airlinereservationsystem.services.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/*
+ * Booking Service implementation class 
+ */
 @Service
 public class BookingServiceImpl implements BookingService {
 

@@ -11,6 +11,9 @@ import org.arpita.airlinereservationsystem.services.PassengerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/*
+ * Passenger Service implementation class 
+ */
 @Service
 public class PassengerServiceImpl implements PassengerService {
 
@@ -59,9 +62,7 @@ public class PassengerServiceImpl implements PassengerService {
 	@Override
 	public void removePassengers(List<Passenger> passengers) {
 		passengerRepository.deleteAll(passengers);
-		
+
 	}
-	
-	
 
 }

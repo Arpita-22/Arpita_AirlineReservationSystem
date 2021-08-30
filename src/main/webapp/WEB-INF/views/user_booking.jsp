@@ -12,10 +12,10 @@
 </head>
 <style>
 body {
-	/*  background: linear-gradient(to bottom, #696969 0%, #C0C0C0 100%); */
-	/* background: linear-gradient(to right, #abb9be 0%, #C0C0C0 100%); */ 
-	
-	background-image: url("images/WaterColorMap.jpg");
+
+	background-image: url("images/globe.jpg");
+	background-size: 1500px 1000px;
+	background-repeat: no-repeat;
 	
 	
 }
@@ -25,9 +25,6 @@ table {
 	margin-right: auto;
 }
 
-/*  h3, h4{
-margin: 0 0 0 0;
-}  */
 
 
 </style>

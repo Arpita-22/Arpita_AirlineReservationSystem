@@ -9,6 +9,9 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+/*
+ * Application JPA config 
+ */
 @Configuration
 @EnableJpaRepositories(basePackages = { "org.arpita.airlinereservationsystem" })
 @EnableTransactionManagement

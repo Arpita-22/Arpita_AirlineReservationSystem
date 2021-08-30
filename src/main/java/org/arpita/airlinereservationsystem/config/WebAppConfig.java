@@ -8,6 +8,9 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+/*
+ * Application web app config 
+ */
 @Configuration
 @EnableWebMvc
 @ComponentScan("org.arpita.airlinereservationsystem")

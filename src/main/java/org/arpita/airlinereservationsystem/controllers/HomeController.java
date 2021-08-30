@@ -1,6 +1,5 @@
 package org.arpita.airlinereservationsystem.controllers;
 
-import org.arpita.airlinereservationsystem.exception.ReservationException;
 import org.arpita.airlinereservationsystem.models.User;
 import org.arpita.airlinereservationsystem.services.UserService;
 import org.slf4j.Logger;
@@ -12,6 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.GetMapping;
 
+/*
+ * Controller class for Home
+ */
 @Controller
 @ControllerAdvice
 public class HomeController {
@@ -23,12 +25,22 @@ public class HomeController {
 		this.userService = userService;
 	}
 
+	/**
+	 * Method to return passenger list jsp page
+	 * 
+	 * @return
+	 */
 	@GetMapping("/passengerList")
 	public String showPassengerListPage() {
 		return "passenger_list";
 	}
-	
-  
+
+	/**
+	 * Method to show home jsp page
+	 * 
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/")
 	public String showHomePage(Model model) {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -36,11 +48,11 @@ public class HomeController {
 			UserDetails userDetails = (UserDetails) principal;
 			User user;
 
-				user = userService.findByUsername(userDetails.getUsername());
-				System.out.println("User: " + user);
-				if (user != null) {
-					model.addAttribute("currentUser", user);
-				}
+			user = userService.findByUsername(userDetails.getUsername());
+			System.out.println("User: " + user);
+			if (user != null) {
+				model.addAttribute("currentUser", user);
+			}
 		}
 		return "index";
 	}

@@ -9,12 +9,13 @@
 <meta charset="UTF-8">
 <title>Ticket Page</title>
 <link rel="stylesheet" type="text/css" href="css/search.css">
-<!-- <link rel="stylesheet" type="text/css" href="/css/ticket.css"> -->
+<link rel="stylesheet" type="text/css" href="css/passengerList.css">
 </head>
 <style>
 body {
-  font-family: sans-serif;
-  background: linear-gradient(to right, #696969 0%, #C0C0C0 100%);
+  background-image: url("${pageContext.request.contextPath}/images/worldmap.jpg");
+	background-size: 1500px 1000px;
+	background-repeat: no-repeat;
 }
 
 table {
@@ -50,7 +51,7 @@ caption{
 }
 
 thead {
-   background-color: gray;
+   background-color: olive;
    color: white;
     font-size: 0.875rem;
     text-transform: uppercase;
@@ -84,6 +85,18 @@ tbody tr:nth-child(odd) th {
 #hiddenfield > tbody > tr > td:nth-child(6){
 	 background-color: #eee;
 	
+}
+
+.button {
+  font: bold 11px Arial;
+  text-decoration: none;
+  background-color: #EEEEEE;
+  color: black;
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
 }
 </style>
 <body>

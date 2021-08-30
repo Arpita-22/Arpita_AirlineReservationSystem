@@ -12,9 +12,13 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+/*
+ * Entity class for Passenger
+ */
 @Entity
 @Table(name = "passengers")
 public class Passenger {
@@ -25,9 +29,11 @@ public class Passenger {
 	private int pId;
 
 	@NotEmpty(message = "firstName must not be empty")
+	@Size(min = 2, max = 50, message = "User name should be between 2 and 50 characters")
 	private String firstName;
 
 	@NotEmpty(message = "lastName must not be empty")
+	@Size(min = 2, max = 50, message = "User name should be between 2 and 50 characters")
 	private String lastName;
 
 //	@Column(unique = true)
@@ -133,7 +139,6 @@ public class Passenger {
 	public void setPersonalId(String personalId) {
 		this.personalId = personalId;
 	}
-
 
 	@Override
 	public int hashCode() {

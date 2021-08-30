@@ -15,23 +15,26 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+/*
+ * Spring security config 
+ */
 @Configuration
 @EnableWebSecurity
 @ComponentScan("org.arpita.airlinereservationsystem")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	private UserDetailsService userDetailsService;
-	
+
 	@Autowired
 	public SecurityConfig(UserDetailsService userDetailsService) {
 		this.userDetailsService = userDetailsService;
 	}
-	
+
 	@Bean
 	public PasswordEncoder pswdEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-	
+
 	public AuthenticationProvider authenticationProvider() {
 		DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
 		daoAuthenticationProvider.setUserDetailsService(userDetailsService);
@@ -40,39 +43,30 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	@Override
-	public void configure(WebSecurity web){
-		web
-		.ignoring()
-		.antMatchers("/javaScript/**", "/images/**", "/css/**", "/resources/**", "/scripts/**");
+	public void configure(WebSecurity web) {
+		web.ignoring().antMatchers("/javaScript/**", "/images/**", "/css/**", "/resources/**", "/scripts/**");
 	}
-	
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-		// Disable CSRF for development and testing
-		.csrf().disable()
-		// Allows the H2 console to be shown in the browser
-		.headers().frameOptions().disable()
-		.and()
-		
-		.authorizeRequests()
-		// Permit all users to access the register page and register post method
-		.antMatchers("/login", "/signUp", "/createUser").permitAll()
-		// Any other requests require login
-		.and().authorizeRequests().anyRequest().authenticated()
-		.and()
-		
-		// Specify the login form
-		.formLogin()
-		.loginPage("/login")
-		.permitAll()
-		
-		// logout
-		.and()
-		.logout().invalidateHttpSession(true)
-		.clearAuthentication(true)
-		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-		.logoutSuccessUrl("/login").permitAll();
+				// Disable CSRF for development and testing
+				.csrf().disable()
+				// Allows the H2 console to be shown in the browser
+				.headers().frameOptions().disable().and()
+
+				.authorizeRequests()
+				// Permit all users to access the register page and register post method
+				.antMatchers("/login", "/signUp", "/createUser").permitAll()
+				// Any other requests require login
+				.and().authorizeRequests().anyRequest().authenticated().and()
+
+				// Specify the login form
+				.formLogin().loginPage("/login").permitAll()
+
+				// logout
+				.and().logout().invalidateHttpSession(true).clearAuthentication(true)
+				.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login").permitAll();
 	}
-	
+
 }

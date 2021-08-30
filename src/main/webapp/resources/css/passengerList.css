@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 body{
-	background: linear-gradient(to right, #696969 0%, #C0C0C0 100%);
+	background-image: url("images/nasaMap.jpg");
 }
 	
 table{
@@ -15,11 +15,10 @@ table{
 }
 
 thead tr{
-	/* background-color:#ffe6e6; */
-	color: darkbrown;
-	/* text-align: left; */
+	background-color:#ffe6e6; 
+	 text-align: left; 
 	font-weight: bold;
-	background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);
+	background: linear-gradient(to right, #704214 0%, #703642 100%);
 } 
 
 table tbody tr{
@@ -37,6 +36,7 @@ tbody tr{
 	background-color: white;
 }
 
-h1{
-	color: #654321;
-} 
+table thead th{
+	color: white;
+}
+

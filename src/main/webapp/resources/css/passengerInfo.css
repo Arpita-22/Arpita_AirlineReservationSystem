@@ -1,7 +1,9 @@
 @charset "UTF-8";
 
 body{
-  background: linear-gradient(to right, #696969 0%, #C0C0C0 100%);
+  /* background: linear-gradient(to right, #696969 0%, #C0C0C0 100%); */
+  
+ background-image: url("images/nasaMap.jpg");
 }
 passengerSignUpForm,passengerUpdateForm {
 	width:200px;
@@ -82,4 +84,31 @@ fieldset{
 	margin: 0 0 0 450px;
 }
 
+a{
+	color: beige;
+	background: none;
+}
+
+#btnAddd{
+	margin : 0 0 30px 0 ;	
+	height: 80%;
+	width: 20%;
+	border-color: brown;
+}
+
+input[type=submit]{
+	border-color: brown;
+}
+
+.button {
+  font: bold 11px Arial;
+  text-decoration: none;
+  background-color: #EEEEEE;
+  color: #333333;
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
+}
 

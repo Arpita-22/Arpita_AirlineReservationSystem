@@ -8,90 +8,70 @@
 <head>
 <meta charset="UTF-8">
 <title>Passenger List</title>
-<!-- <link rel="stylesheet" type="text/css" href="css/passengerList.css"> -->
-<link rel="stylesheet" type="text/css" href="css/search.css">
+ <link rel="stylesheet" type="text/css" href="css/passengerList.css">
+ <link rel="stylesheet" type="text/css" href="css/home_link.css">
 <Style>
-body {
-	background: linear-gradient(to right, #696969 0%, #C0C0C0 100%);
-}
-body {
-  font-family: sans-serif;
+body{
+	
+	background-image: url("${pageContext.request.contextPath}/images/woodenMap.jpg");
+	background-size: 1500px 1000px;
+	background-repeat: no-repeat;
 }
 
-table {
+table{
   border-collapse: collapse;
-  border: 1px solid black;
+  margin: 25px 0;
+  font-size: 0.9em;
+  min-width: 400px;
   text-align: center;
-    vertical-align: middle;
- margin-left: auto;
-  margin-right: auto;
-}
-
-th, td {
-  border: 1px solid black;
-   padding: 8px;
-}
-
-
-/* thead th {
-  width: 25%;
-} */
-
-.cell-7 {
-  background-color: gold;
-  font-weight: bold;
-}
-
-caption{
-  font-weight: bold;
-  font-size: 24px;
-  text-align: left;
-  color: #333;
-  margin-bottom: 16px;
-}
-
-thead {
-   background-color: gray;
-   color: white;
-    font-size: 0.875rem;
-    text-transform: uppercase;
-    letter-spacing: 2%;
-}	
-
-
-tbody tr:nth-child(odd) {
-  background-color: #fff;
-}
-
-tbody tr:nth-child(even) {
-  background-color: #eee;
-}
-
-tbody th {
-  background-color: #36c;
-  color: #fff;
-  text-align: left;
-}
-
-tbody tr:nth-child(even) th {
-  background-color: #25c;
+   vertical-align: middle;
   
 }
 
-tbody tr:nth-child(odd) th {
-  background-color: #25c;
-}
+thead tr{
+	background-color:#ffe6e6; 
+	 text-align: left; 
+	font-weight: bold;
+	background: linear-gradient(to right, #704214 0%, #703642 100%);
+} 
 
-#hiddenfield > tbody > tr > td:nth-child(6){
-	 background-color: #eee;
+table tbody tr{
+	border-bottom: 1px solid grey;
 	
 }
 
-
 table{
- margin-left: auto;
   margin-right: auto;
+  margin-left:auto;
 }
+
+table th, table td{
+	
+	padding: 12px 15px;
+	
+}
+
+tbody tr{
+	background-color: white;
+}
+
+table thead th{
+	color: white;
+}
+ 
+
+.button {
+  font: bold 11px Arial;
+  text-decoration: none;
+  background-color: #EEEEEE;
+  color: black;
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
+}
+
 </Style>
 </head>
 <body>
@@ -131,15 +111,13 @@ table{
 						Passenger</a></td>
 				<td><a href="${pageContext.request.contextPath}/passenger/remove/<%=passenger.getpId()%>">Remove
 						Passenger</a></td>
-				<%-- <td><a href="${pageContext.request.contextPath}/ticket/<%=passenger.getpId()%>">Generate
-						Ticket</a></td> --%>
+		
 			</tr>
 				<%
 					}	
 				}
 				%>
-				<%-- <a href="${pageContext.request.contextPath}/ticket/">Generate Ticket</a> --%>
-				 <a href="${pageContext.request.contextPath}/booking">Confirm Booking</a> 
+				 <a  class="button" href="${pageContext.request.contextPath}/booking">Confirm Booking</a> 
 				
 		</tbody>
 	</table>

@@ -20,7 +20,8 @@ table {
 
 body {
 	/* background-color: rgb(200, 230, 240); */
-	background: linear-gradient(to right, #696969 0%, #C0C0C0 100%);
+	/* background: linear-gradient(to right, #696969 0%, #C0C0C0 100%); */
+	background-image: url("images/worldmap.jpg");
 }
 
 .link-button {
@@ -48,7 +49,14 @@ table {
 
 a{
 margin-left: 40px;
+color: #556B2F;
 }
+
+thead{
+  background-color: #556B2F;
+}
+
+
 </style>
 </head>
 
@@ -58,7 +66,7 @@ margin-left: 40px;
 
 		<br />
 		<table border="1" borderColor="gray" height="80%" width="80%" id="hiddenfield">
-		<caption style="text-align:center;color:white;">List of All Flights</caption>
+		<caption style="text-align:center;color:#556B2F;">List of All Flights</caption>
 			<thead>
 				<tr>
 					<th>Origin</th>
