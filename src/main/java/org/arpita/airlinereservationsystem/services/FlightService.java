@@ -16,7 +16,7 @@ public interface FlightService {
 	Iterable<Flight> findByDepartureCityNameAndArrivalCityNameAndDepartureDate(String departureCityName,
 			String arrivalCityName, String departureDate) throws ReservationException;
 
-	Iterable<Flight> findBySourceAndDestination(String source, String destination) throws ReservationException;
+//	Iterable<Flight> findBySourceAndDestination(String source, String destination) throws ReservationException;
 
 	void removeFlight(Flight flight);
 

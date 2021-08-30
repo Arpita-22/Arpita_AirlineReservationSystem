@@ -55,7 +55,6 @@ public class UserController {
 	 * @param model
 	 * @return
 	 */
-	@SuppressWarnings("finally")
 	@PostMapping("/createUser")
 	public String createUser(@Valid @ModelAttribute("user") User user, BindingResult errors, Errors error,
 			Model model) {
@@ -69,14 +68,12 @@ public class UserController {
 				errors.rejectValue("username", "errors.user", "The user is already in use");
 				return "sign_up";
 			}
-		} catch (Exception e) {
-			LOG.error("Error while sign Up", e);
-			return "error_page";
-		} finally {
 			user.setPassword(passwordEncoder.encode(user.getPassword()));
 			userService.createUser(user);
 			return "login";
-
+		} catch (Exception e) {
+			LOG.error("Error while sign Up", e);
+			return "error_page";
 		}
 	}
 

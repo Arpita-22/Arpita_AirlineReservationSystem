@@ -63,6 +63,6 @@ Each separate page contains a link `Home` at the top which when clicked takes th
 
 
 
-Github Link: https://github.com/Arpita-22/Arpita_AirlineReservationSystem/tree/development
+Github Link: https://github.com/Arpita-22/Arpita_AirlineReservationSystem/tree/master
 
 Author: Arpita Dutta

@@ -53,10 +53,10 @@ public class FlightServiceImpl implements FlightService {
 				arrivalCityName, departureDate);
 	}
 
-	@Override
-	public Iterable<Flight> findBySourceAndDestination(String source, String destination) throws ReservationException {
-		return flightRepository.findBySourceAndDestination(source, destination);
-	}
+//	@Override
+//	public Iterable<Flight> findBySourceAndDestination(String source, String destination) throws ReservationException {
+//		return flightRepository.findBySourceAndDestination(source, destination);
+//	}
 
 	@Override
 	public void removeFlight(Flight flight) {
@@ -74,5 +74,11 @@ public class FlightServiceImpl implements FlightService {
 	public List<String> findDestination(String destination) throws ReservationException {
 		return flightRepository.findDestination(destination);
 	}
+
+//	@Override
+//	public Iterable<Flight> findBySourceAndDestination(String source, String destination) throws ReservationException {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 }

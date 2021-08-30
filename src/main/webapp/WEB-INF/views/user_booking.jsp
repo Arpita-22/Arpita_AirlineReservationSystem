@@ -25,6 +25,19 @@ table {
 	margin-right: auto;
 }
 
+table thead th{
+ background: linear-gradient(to right, #704214 0%, #703642 100%);
+
+}
+
+.button{
+ color: brown;
+}
+
+  h3, h4{
+ color: #3d0c02;
+}
+
 
 
 </style>
@@ -40,7 +53,7 @@ table {
 		for (Booking booking : bookings) {
 		%>
 		<table>
-			<h4 style="text-align: center;">
+			<h4 style="text-align: center; color: beige;">
 				Booking Details #
 				<%=count%>
 				</h4>
